@@ -3,6 +3,8 @@ import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import clsx from "clsx";
 import { ContentCard } from "./ContentCard";
+import { MdArrowBackIos } from "react-icons/md";
+import { MdArrowForwardIos } from "react-icons/md";
 
 type ContentSliderProps<T> = {
   className?: string;
@@ -10,7 +12,11 @@ type ContentSliderProps<T> = {
   renderItem: (item: T, index: number) => ReactNode;
 };
 
-export default function ContentSlider<T>({ className = "", data, renderItem }: ContentSliderProps<T>) {
+export default function ContentSlider<T>({
+  className = "",
+  data,
+  renderItem,
+}: ContentSliderProps<T>) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false);
 
@@ -25,6 +31,9 @@ export default function ContentSlider<T>({ className = "", data, renderItem }: C
     },
     created() {
       setLoaded(true);
+      requestAnimationFrame(() => {
+        instanceRef.current?.update();
+      });
     },
   });
 
@@ -43,7 +52,7 @@ export default function ContentSlider<T>({ className = "", data, renderItem }: C
             disabled={currentSlide === 0}
             className="flex h-10 w-10 items-center justify-center rounded-full border border-brand-softAccent text-brand-secondary transition-colors hover:bg-brand-starkAccent hover:text-brand-light disabled:opacity-40"
           >
-            ‹
+            <MdArrowBackIos className="translate-x-[3px]" />
           </button>
         )}
 
@@ -61,7 +70,7 @@ export default function ContentSlider<T>({ className = "", data, renderItem }: C
             disabled={currentSlide === pageCount - 1}
             className="flex h-10 w-10 items-center justify-center rounded-full border border-brand-softAccent text-brand-secondary transition-colors hover:bg-brand-starkAccent hover:text-brand-light disabled:opacity-40"
           >
-            ›
+            <MdArrowForwardIos />
           </button>
         )}
       </div>
