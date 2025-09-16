@@ -1,0 +1,37 @@
+# -------------------------
+# Line endings
+# -------------------------
+
+# Force all text files to use LF in the repo
+* text=auto eol=lf
+
+# Lock files must stay consistent across environments
+package-lock.json text eol=lf
+yarn.lock text eol=lf
+pnpm-lock.yaml text eol=lf
+
+# Shell scripts must always be LF (Linux)
+*.sh text eol=lf
+
+# -------------------------
+# Binary files (no line ending conversion)
+# -------------------------
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg binary
+*.mp4 binary
+*.mov binary
+*.pdf binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+
+# -------------------------
+# Cloudflare / Wrangler configs (treated as text)
+# -------------------------
+.wrangler/* text eol=lf
+.dev.vars text eol=lf

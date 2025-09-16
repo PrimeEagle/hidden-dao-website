@@ -1,0 +1,25 @@
+@import "tailwindcss";
+@import 'keen-slider/keen-slider.min.css';
+
+@theme {
+  /* Colors */
+  --color-brand-primary: #1A1A1A;
+  --color-brand-secondary: #6E4B8A;
+  --color-brand-accent: #8CAEA0;
+  --color-brand-softAccent: #CFCAC4;
+  --color-brand-starkAccent: #A62626;
+  --color-brand-neutral: #F7F5EF;
+  --color-brand-light: #FEFEFC;
+
+  /* Fonts */
+  --font-logo: "Kaushan Script", serif;
+  --font-heading: "Quattrocento", serif;
+  --font-body: "Quattrocento Sans", sans-serif;
+  --font-chinese: "Zhi Mang Xing", sans-serif;
+}
+
+.lenis {
+  height: 100%;
+  overflow-y: auto;
+  overscroll-behavior: none;
+}

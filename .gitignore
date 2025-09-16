@@ -1,0 +1,59 @@
+# -------------------------
+# Node.js / Package managers
+# -------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# -------------------------
+# Build / Bundler output
+# -------------------------
+dist/
+dist-ssr/
+.vite/
+.tanstack/
+.vinxi/
+.nitro/
+.output/
+
+# -------------------------
+# Environment / Config
+# -------------------------
+.env
+*.local
+.wrangler/
+.dev.vars
+
+# -------------------------
+# Testing / Coverage
+# -------------------------
+coverage/
+.vitest/
+
+# -------------------------
+# IDE / Editor
+# -------------------------
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# -------------------------
+# OS Junk
+# -------------------------
+.DS_Store
+Thumbs.db
+
+# -------------------------
+# Project-specific scratch files
+# -------------------------
+count.txt
+todos.json
