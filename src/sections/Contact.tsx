@@ -1,6 +1,9 @@
 import { useState } from "react";
 import Section from "../components/Section";
 import Map from "../components/GoogleMap";
+import { MdFacebook } from "react-icons/md";
+import { LuInstagram } from "react-icons/lu";
+import { ImYoutube } from "react-icons/im";
 
 export default function Contact() {
   const [name, setName] = useState("");
@@ -108,31 +111,31 @@ export default function Contact() {
             ${
               isFormValid
                 ? "bg-brand-starkAccent text-brand-light hover:bg-brand-starkAccent/90"
-                : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                : "bg-brand-light text-brand-softAccent cursor-not-allowed"
             }`}
         >
           Send
         </button>
       </form>
 
-      <div className="mt-6 flex gap-4">
+      <div className="mt-6 flex gap-4 justify-center text-4xl">
         <a
-          className="text-blue-600 hover:underline"
+          className="text-[#1877F2] hover:text-[#1877F2]/80"
           href="https://facebook.com/yourpage"
         >
-          Facebook
+          <MdFacebook />
         </a>
         <a
-          className="text-blue-600 hover:underline"
+          className="text-[#833ab4] hover:text-[#833ab4]/80"
           href="https://instagram.com/yourpage"
         >
-          Instagram
+          <LuInstagram />
         </a>
         <a
-          className="text-blue-600 hover:underline"
+          className="text-[#FF0000] hover:text-[#FF0000]/80"
           href="https://youtube.com/@yourchannel"
         >
-          YouTube
+          <ImYoutube />
         </a>
       </div>
 

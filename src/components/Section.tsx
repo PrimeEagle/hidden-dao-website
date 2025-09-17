@@ -24,12 +24,12 @@ export default function Section({
     <section id={id} className={`relative py-8 px-4 ${className}`}>
       <div className={fullWidth ? "" : "mx-auto max-w-3xl"}>
         {title && (
-          <h2 className="text-xl font-body text-left text-brand-accent font-bold [font-variant:small-caps]">
+          <h2 className="text-2xl font-body text-left text-brand-accent font-bold [font-variant:small-caps]">
             {title}
           </h2>
         )}
         {subTitle && (
-          <h3 className="text-3xl font-heading mb-5 text-left font-bold text-brand-secondary">
+          <h3 className="text-4xl font-heading mb-5 text-left font-bold text-brand-secondary">
             {subTitle}
           </h3>
         )}
