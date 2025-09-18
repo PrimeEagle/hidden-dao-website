@@ -17,9 +17,3 @@
   --font-body: "Quattrocento Sans", sans-serif;
   --font-chinese: "Zhi Mang Xing", sans-serif;
 }
-
-.lenis {
-  height: 100%;
-  overflow-y: auto;
-  overscroll-behavior: none;
-}

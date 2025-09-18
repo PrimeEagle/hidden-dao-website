@@ -10,7 +10,6 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@studio-freight/lenis": "^1.0.42",
     "@tailwindcss/vite": "^4.0.6",
     "@tanstack/react-devtools": "^0.2.2",
     "@tanstack/react-router": "^1.130.2",

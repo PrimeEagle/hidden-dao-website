@@ -6,8 +6,6 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect } from "react";
-import Lenis from "@studio-freight/lenis";
 import appCss from "../styles/app.css?url";
 import Navbar from "../components/Navbar";
 import HeaderCustomContent from "../components/HeaderCustomContent";
@@ -22,25 +20,6 @@ function NotFound() {
 }
 
 function RootComponent() {
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const lenis = new Lenis({
-      lerp: 0.05, // inertia
-      smoothWheel: true,
-    });
-
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    return () => {
-      lenis.destroy();
-    };
-  }, []);
-
   const navItems = [
     { id: "hero", label: "Home" },
     { id: "about", label: "About" },
@@ -98,18 +77,15 @@ function RootDocument({ children }: { children: ReactNode }) {
           ]}
         />
       </head>
-      <body className="relative min-h-screen bg-white text-gray-900 antialiased overflow-hidden">
+      <body className="relative min-h-screen bg-white text-gray-900 antialiased">
         {/* Background texture overlay */}
         <div
           className="absolute inset-0 bg-[url('/xuan.png')] bg-repeat opacity-40 pointer-events-none z-0"
           aria-hidden="true"
         />
 
-        {/* Content wrapper */}
-        <div id="lenis-root" className="relative z-10">
-          {children}
-          <Scripts />
-        </div>
+        {children}
+        <Scripts />
       </body>
     </html>
   );
