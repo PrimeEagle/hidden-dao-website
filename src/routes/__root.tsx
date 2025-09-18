@@ -78,12 +78,10 @@ function RootDocument({ children }: { children: ReactNode }) {
         />
       </head>
       <body className="relative min-h-screen bg-white text-gray-900 antialiased">
-        {/* Background texture overlay */}
         <div
           className="absolute inset-0 bg-[url('/xuan.png')] bg-repeat opacity-40 pointer-events-none z-0"
           aria-hidden="true"
         />
-
         {children}
         <Scripts />
       </body>
