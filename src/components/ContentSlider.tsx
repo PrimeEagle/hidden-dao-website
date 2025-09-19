@@ -2,7 +2,7 @@ import { useState, ReactNode } from "react";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import clsx from "clsx";
-import { ContentCard } from "./ContentCard";
+import { ContentCard } from "@/components/ContentCard";
 import { MdArrowBackIos } from "react-icons/md";
 import { MdArrowForwardIos } from "react-icons/md";
 

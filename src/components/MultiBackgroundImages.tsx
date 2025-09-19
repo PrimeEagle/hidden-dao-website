@@ -1,4 +1,4 @@
-import FadeImage from "./FadeImage"
+import FadeImage from "@/components/FadeImage"
 
 type Position = number | string // e.g. 200, "20%"
 

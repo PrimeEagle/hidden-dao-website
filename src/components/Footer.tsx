@@ -1,4 +1,4 @@
-import Copyright from "./Copyright"
+import Copyright from "@/components/Copyright"
 import clsx from "clsx";
 
 type FooterProps = {

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useActiveSection } from "../hooks/useActiveSection";
+import { useActiveSection } from "@/hooks/useActiveSection";
 import clsx from "clsx";
 
 type NavItem = {

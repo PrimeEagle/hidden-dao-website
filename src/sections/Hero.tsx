@@ -1,5 +1,5 @@
-import Section from "../components/Section"
-import FadeVideo from "../components/FadeVideo"
+import Section from "@/components/Section"
+import FadeVideo from "@/components/FadeVideo"
 
 export default function Hero() {
   return (
