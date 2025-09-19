@@ -8,8 +8,13 @@ type MapProps = {
 
 export default function GoogleMap({ src, className = "" }: MapProps) {
   return (
-    <div className={clsx("relative mt-8 hover:brightness-105", className)}>
-      <FadeIFrame src={src} />
+    <div
+      className={clsx(
+        "hover:brightness-105 w-full h-full rounded-lg shadow overflow-hidden",
+        className
+      )}
+    >
+      <FadeIFrame src={src} className="w-full h-full" />
     </div>
   );
 }
