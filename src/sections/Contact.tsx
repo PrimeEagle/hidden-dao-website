@@ -19,8 +19,17 @@ export default function Contact() {
 
   return (
     <Section id="contact" title="Contact" subTitle="Contact Us Anytime">
-      <BusinessHours hours={hours} title="Class Times" hideClosed />
-      <EmailUs />
+      <div className="grid grid-cols-2 grid-rows-2 gap-4">
+        <div className="row-span-2">
+          <EmailUs />
+        </div>
+        <div className="col-start-2 row-start-2">
+          <BusinessHours hours={hours} title="Class Times" hideClosed />
+        </div>
+        <div className="col-start-2 row-start-1">
+          <Map src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6877.888289372231!2d-97.84227286850981!3d30.466020121569095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x865b327adb4161cf%3A0xfedb5924ba4fac76!2s1900%20Dagama%20Dr%2C%20Cedar%20Park%2C%20TX%2078613!5e0!3m2!1sen!2sus!4v1757874481160!5m2!1sen!2sus" />
+        </div>
+      </div>
 
       <div className="mt-6 flex gap-4 justify-center text-4xl">
         <a
@@ -42,8 +51,6 @@ export default function Contact() {
           <ImYoutube />
         </a>
       </div>
-
-      <Map src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6877.888289372231!2d-97.84227286850981!3d30.466020121569095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x865b327adb4161cf%3A0xfedb5924ba4fac76!2s1900%20Dagama%20Dr%2C%20Cedar%20Park%2C%20TX%2078613!5e0!3m2!1sen!2sus!4v1757874481160!5m2!1sen!2sus" />
     </Section>
   );
 }

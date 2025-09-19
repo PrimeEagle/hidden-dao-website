@@ -18,11 +18,11 @@ export default function BusinessHours({
   return (
     <div
       className={clsx(
-        "max-w-md mx-auto rounded-xl bg-brand-light p-6 shadow",
+        "max-w-md mx-auto rounded-xl bg-brand-light p-2 shadow",
         className
       )}
     >
-      <div className="p-6">
+      <div className="p-2">
         {title === "" ? "" : (
         <h2 className="text-2xl font-semibold mb-4 text-center text-brand-primary">
           {title}
