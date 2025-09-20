@@ -7,7 +7,9 @@ export default function EmailUs() {
   const [message, setMessage] = useState("");
   const [touched, setTouched] = useState(false);
   const [error, setError] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
 
   const validateEmail = (value: string) => {
     if (!value.trim()) return "";
@@ -53,8 +55,17 @@ export default function EmailUs() {
   const isFormValid = name.trim() && email.trim() && message.trim() && !error;
 
   return (
-    <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-6">
-      <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" />
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col gap-4 h-full min-h-0"
+    >
+      <input
+        type="text"
+        name="website"
+        tabIndex={-1}
+        autoComplete="off"
+        className="hidden"
+      />
 
       <div className="relative">
         <input
@@ -98,18 +109,20 @@ export default function EmailUs() {
         >
           Your Email
         </label>
-        {error && touched && <p className="mt-1 text-sm text-brand-starkAccent">{error}</p>}
+        {error && touched && (
+          <p className="mt-1 text-sm text-brand-starkAccent">{error}</p>
+        )}
       </div>
 
-      <div className="relative">
+      <div className="relative flex-1 min-h-0">
         <textarea
           id="message"
           name="message"
           required
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          className="peer w-full rounded-lg border px-4 pt-5 pb-2 
-                     border-brand-softAccent bg-brand-light 
+          className="peer w-full h-full rounded-lg border px-4 pt-5 pb-2 
+                     border-brand-softAccent bg-brand-light resize-none
                      focus:outline-none focus:ring-2 focus:ring-brand-starkAccent"
         />
         <label

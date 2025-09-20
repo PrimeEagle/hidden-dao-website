@@ -21,12 +21,16 @@ export default function Contact() {
   return (
     <Section id="contact" title="Contact" subTitle="Contact Us Anytime">
       <LayoutManager
-        layout="leftSpanRightSplit"
+        layout="rightSpanLeftSplit"
+        rowTemplate="topSmall"       // [grid-template-rows:1fr_2fr]
+        colTemplate="equal"    // [grid-template-columns:2fr_1fr]
+        height="h-[700px]"
+        gap="4"
         slots={{
-          slot1: (
+          slot1: <BusinessHours hours={hours} title="Class Times" hideClosed />,
+          slot2: (
             <Map src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6877.888289372231!2d-97.84227286850981!3d30.466020121569095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x865b327adb4161cf%3A0xfedb5924ba4fac76!2s1900%20Dagama%20Dr%2C%20Cedar%20Park%2C%20TX%2078613!5e0!3m2!1sen!2sus!4v1757874481160!5m2!1sen!2sus" />
           ),
-          slot2: <BusinessHours hours={hours} title="Class Times" hideClosed />,
           slot3: <EmailUs />,
         }}
       />

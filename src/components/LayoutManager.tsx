@@ -12,76 +12,189 @@ type FourSlots = {
 };
 
 type LayoutManagerProps =
-  | { layout: "threeVertical"; slots: ThreeSlots }
-  | { layout: "threeHorizontal"; slots: ThreeSlots }
-  | { layout: "leftSpanRightSplit"; slots: ThreeSlots }
-  | { layout: "rightSpanLeftSplit"; slots: ThreeSlots }
-  | { layout: "twoByTwo"; slots: FourSlots };
+  | {
+      layout: "threeVertical";
+      slots: ThreeSlots;
+      className?: string;
+      height?: string;
+      width?: string;
+      gap?: string; // pass just "4" → becomes "gap-4"
+    }
+  | {
+      layout: "threeHorizontal";
+      slots: ThreeSlots;
+      className?: string;
+      height?: string;
+      width?: string;
+      gap?: string;
+    }
+  | {
+      layout: "twoByTwo";
+      slots: FourSlots;
+      className?: string;
+      rowTemplate?: RowTemplate;
+      colTemplate?: ColTemplate;
+      height?: string;
+      width?: string;
+      gap?: string;
+    }
+  | {
+      layout: "leftSpanRightSplit";
+      slots: ThreeSlots;
+      className?: string;
+      rowTemplate?: RowTemplate;
+      colTemplate?: ColTemplate;
+      height?: string;
+      width?: string;
+      gap?: string;
+    }
+  | {
+      layout: "rightSpanLeftSplit";
+      slots: ThreeSlots;
+      className?: string;
+      rowTemplate?: RowTemplate;
+      colTemplate?: ColTemplate;
+      height?: string;
+      width?: string;
+      gap?: string;
+    };
 
-function LayoutThreeVertical({ slots }: { slots: ThreeSlots }) {
+type RowTemplate = "equal" | "split" | "topSmall" | "bottomSmall";
+type ColTemplate = "equal" | "leftWide" | "rightWide";
+
+const rowTemplateClasses: Record<RowTemplate, string> = {
+  equal: "[grid-template-rows:1fr_1fr]",
+  split: "[grid-template-rows:1fr_2fr]",
+  topSmall: "[grid-template-rows:1fr_2fr]",
+  bottomSmall: "[grid-template-rows:2fr_1fr]",
+};
+
+const colTemplateClasses: Record<ColTemplate, string> = {
+  equal: "[grid-template-columns:1fr_1fr]",
+  leftWide: "[grid-template-columns:2fr_1fr]",
+  rightWide: "[grid-template-columns:1fr_2fr]",
+};
+
+type CommonProps = {
+  className?: string;
+  height?: string; // Tailwind class like "h-[800px]"
+  width?: string; // Tailwind class like "w-[1200px]"
+  gap?: number; // pass 2 → gap-2
+};
+
+const gapClasses: Record<number, string> = {
+  0: "gap-0",
+  1: "gap-1",
+  2: "gap-2",
+  3: "gap-3",
+  4: "gap-4",
+  5: "gap-5",
+  6: "gap-6",
+  8: "gap-8",
+  10: "gap-10",
+  12: "gap-12",
+};
+
+type GridProps = CommonProps & {
+  rowTemplate?: RowTemplate;
+  colTemplate?: ColTemplate;
+};
+
+function makeClasses({ className, height, width, gap }: CommonProps) {
+  const gapClass = gap !== undefined ? (gapClasses[gap] ?? "") : "gap-2";
+  return `${height ?? ""} ${width ?? ""} ${gapClass} ${className ?? ""}`;
+}
+
+function LayoutThreeVertical({
+  slots,
+  ...rest
+}: { slots: ThreeSlots } & CommonProps) {
   return (
-    <div className="flex flex-col gap-2">
+    <div className={`flex flex-col items-stretch ${makeClasses(rest)}`}>
       {slots.slot1}
       {slots.slot2}
       {slots.slot3}
     </div>
-  )
+  );
 }
 
-function LayoutThreeHorizontal({ slots }: { slots: ThreeSlots }) {
+function LayoutThreeHorizontal({
+  slots,
+  ...rest
+}: { slots: ThreeSlots } & CommonProps) {
   return (
-    <div className="flex flex-row gap-2">
+    <div className={`flex flex-row items-stretch ${makeClasses(rest)}`}>
       {slots.slot1}
       {slots.slot2}
       {slots.slot3}
     </div>
-  )
+  );
 }
 
-function LayoutTwoByTwo({ slots }: { slots: FourSlots }) {
+function LayoutTwoByTwo({
+  slots,
+  rowTemplate = "equal",
+  colTemplate = "equal",
+  ...rest
+}: { slots: FourSlots } & GridProps) {
   return (
-    <div className="grid grid-cols-2 gap-2">
+    <div
+      className={`grid items-stretch ${rowTemplateClasses[rowTemplate]} ${colTemplateClasses[colTemplate]} ${makeClasses(rest)}`}
+    >
       {slots.slot1}
       {slots.slot2}
       {slots.slot3}
       {slots.slot4}
     </div>
-  )
+  );
 }
 
-function LayoutLeftSpanRightSplit({ slots }: { slots: ThreeSlots }) {
+function LayoutLeftSpanRightSplit({
+  slots,
+  rowTemplate = "equal",
+  colTemplate = "equal",
+  ...rest
+}: { slots: ThreeSlots } & GridProps) {
   return (
-    <div className="grid grid-cols-2 gap-6 items-stretch">
+    <div
+      className={`grid items-stretch ${rowTemplateClasses[rowTemplate]} ${colTemplateClasses[colTemplate]} ${makeClasses(rest)}`}
+    >
       <div className="row-span-2 h-full">{slots.slot1}</div>
-      <div className="w-full h-full">{slots.slot2}</div>
-      <div className="w-full h-full">{slots.slot3}</div>
+      <div className="h-full">{slots.slot2}</div>
+      <div className="h-full">{slots.slot3}</div>
     </div>
-  )
+  );
 }
 
-
-function LayoutRightSpanLeftSplit({ slots }: { slots: ThreeSlots }) {
+function LayoutRightSpanLeftSplit({
+  slots,
+  rowTemplate = "equal",
+  colTemplate = "equal",
+  ...rest
+}: { slots: ThreeSlots } & GridProps) {
   return (
-    <div className="grid grid-cols-2 gap-4 items-stretch">
-      <div className="w-full h-full">{slots.slot1}</div>
+    <div
+      className={`grid items-stretch ${rowTemplateClasses[rowTemplate]} ${colTemplateClasses[colTemplate]} ${makeClasses(rest)}`}
+    >
+      <div className="h-full">{slots.slot1}</div>
       <div className="row-span-2 h-full">{slots.slot3}</div>
-      <div className="w-full h-full">{slots.slot2}</div>
+      <div className="h-full">{slots.slot2}</div>
     </div>
-  )
+  );
 }
 
 export default function LayoutManager(props: LayoutManagerProps) {
   switch (props.layout) {
     case "threeVertical":
-      return <LayoutThreeVertical slots={props.slots} />;
+      return <LayoutThreeVertical {...props} />;
     case "threeHorizontal":
-      return <LayoutThreeHorizontal slots={props.slots} />;
-    case "leftSpanRightSplit":
-      return <LayoutLeftSpanRightSplit slots={props.slots} />;
-    case "rightSpanLeftSplit":
-      return <LayoutRightSpanLeftSplit slots={props.slots} />;
+      return <LayoutThreeHorizontal {...props} />;
     case "twoByTwo":
-      return <LayoutTwoByTwo slots={props.slots} />;
+      return <LayoutTwoByTwo {...props} />;
+    case "leftSpanRightSplit":
+      return <LayoutLeftSpanRightSplit {...props} />;
+    case "rightSpanLeftSplit":
+      return <LayoutRightSpanLeftSplit {...props} />;
     default:
       return null;
   }
