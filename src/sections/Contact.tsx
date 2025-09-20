@@ -22,10 +22,10 @@ export default function Contact() {
     <Section id="contact" title="Contact" subTitle="Contact Us Anytime">
       <LayoutManager
         layout="rightSpanLeftSplit"
-        rowTemplate="topSmall"       // [grid-template-rows:1fr_2fr]
-        colTemplate="equal"    // [grid-template-columns:2fr_1fr]
+        rowTemplate="topSmall"
+        colTemplate="equal"
         height="h-[700px]"
-        gap="4"
+        gap={4}
         slots={{
           slot1: <BusinessHours hours={hours} title="Class Times" hideClosed />,
           slot2: (

@@ -18,7 +18,7 @@ type LayoutManagerProps =
       className?: string;
       height?: string;
       width?: string;
-      gap?: string; // pass just "4" → becomes "gap-4"
+      gap?: number;
     }
   | {
       layout: "threeHorizontal";
@@ -26,7 +26,7 @@ type LayoutManagerProps =
       className?: string;
       height?: string;
       width?: string;
-      gap?: string;
+      gap?: number;
     }
   | {
       layout: "twoByTwo";
@@ -36,7 +36,7 @@ type LayoutManagerProps =
       colTemplate?: ColTemplate;
       height?: string;
       width?: string;
-      gap?: string;
+      gap?: number;
     }
   | {
       layout: "leftSpanRightSplit";
@@ -46,7 +46,7 @@ type LayoutManagerProps =
       colTemplate?: ColTemplate;
       height?: string;
       width?: string;
-      gap?: string;
+      gap?: number;
     }
   | {
       layout: "rightSpanLeftSplit";
@@ -56,7 +56,7 @@ type LayoutManagerProps =
       colTemplate?: ColTemplate;
       height?: string;
       width?: string;
-      gap?: string;
+      gap?: number;
     };
 
 type RowTemplate = "equal" | "split" | "topSmall" | "bottomSmall";
