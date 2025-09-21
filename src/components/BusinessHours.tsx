@@ -18,7 +18,7 @@ export default function BusinessHours({
   return (
     <div
       className={clsx(
-        "max-w-md mx-auto rounded-xl bg-brand-light shadow",
+        "max-w-md mx-auto rounded-xl bg-brand-light p-2 shadow",
         className
       )}
     >

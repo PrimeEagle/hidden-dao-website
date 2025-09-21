@@ -77,9 +77,9 @@ const colTemplateClasses: Record<ColTemplate, string> = {
 
 type CommonProps = {
   className?: string;
-  height?: string; // Tailwind class like "h-[800px]"
-  width?: string; // Tailwind class like "w-[1200px]"
-  gap?: number; // pass 2 → gap-2
+  height?: string;
+  width?: string;
+  gap?: number;
 };
 
 const gapClasses: Record<number, string> = {

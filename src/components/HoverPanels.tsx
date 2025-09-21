@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import clsx from "clsx";
 
 type Panel = {
   id: string;
@@ -7,25 +8,29 @@ type Panel = {
   description?: string;
   image: string;
   color: {
-    base: string; // e.g. "bg-red-600/50"
-    hover: string; // e.g. "bg-red-800/70"
+    base: string;
+    hover: string;
   };
   children?: React.ReactNode;
 };
 
-interface HoverPanelsProps {
+type HoverPanelsProps = {
   panels: Panel[];
-}
+  className?: string;
+};
 
-const HoverPanels: React.FC<HoverPanelsProps> = ({ panels }) => {
+export default function HoverPanels({
+  panels,
+  className = "",
+}: HoverPanelsProps) {
   const [hovered, setHovered] = useState<string | null>(null);
 
   return (
-    <div className="flex w-full h-screen overflow-hidden">
+    <div className={clsx("flex w-full overflow-hidden rounded-xl", className)}>
       {panels.map((panel) => (
         <div
           key={panel.id}
-          className="relative flex-1 flex items-center justify-center transition-all duration-500 cursor-pointer group"
+          className="relative flex-1 h-full flex items-start justify-center transition-all duration-500 cursor-pointer group"
           onMouseEnter={() => setHovered(panel.id)}
           onMouseLeave={() => setHovered(null)}
           style={{
@@ -34,16 +39,19 @@ const HoverPanels: React.FC<HoverPanelsProps> = ({ panels }) => {
             backgroundPosition: "center",
           }}
         >
-          {/* Overlay tint */}
           <div
             className={`absolute inset-0 transition-colors duration-500 ${
               hovered === panel.id ? panel.color.hover : panel.color.base
             }`}
           />
 
-          {/* Content */}
-          <div className="relative z-10 text-center text-white p-6">
-            <h2 className="text-3xl font-bold">{panel.title}</h2>
+          <div className="relative z-10 text-center text-white px-6 pt-12 w-full">
+            <div className="mx-auto min-h-[4.5rem] flex items-start justify-center">
+              <h2 className="text-3xl font-bold overflow-hidden font-heading">
+                {panel.title}
+              </h2>
+            </div>
+
             <div
               className={`transition-all duration-500 ${
                 hovered === panel.id
@@ -51,14 +59,17 @@ const HoverPanels: React.FC<HoverPanelsProps> = ({ panels }) => {
                   : "opacity-0 translate-y-4"
               }`}
             >
-              <p className="text-sm uppercase tracking-wide mt-2">
-                {panel.subtitle}
-              </p>
+              <div className="mt-2 min-h-[1.25rem] flex items-start justify-center overflow-hidden">
+                <p className="text-sm uppercase tracking-wide font-body font-bold">
+                  {panel.subtitle}
+                </p>
+              </div>
+
               {panel.children ? (
                 <div className="mt-2">{panel.children}</div>
               ) : (
                 panel.description && (
-                  <p className="mt-2 text-base">{panel.description}</p>
+                  <p className="mt-2 text-base font-body">{panel.description}</p>
                 )
               )}
             </div>
@@ -67,6 +78,4 @@ const HoverPanels: React.FC<HoverPanelsProps> = ({ panels }) => {
       ))}
     </div>
   );
-};
-
-export default HoverPanels;
+}

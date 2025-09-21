@@ -12,26 +12,16 @@ interface BackgroundLayerProps {
   images: BackgroundImage[]
 }
 
-
-
 export default function MultiBackgroundImages({ images }: BackgroundLayerProps) {
   return (
     <div className="absolute inset-0 -z-10">
       {images.map((img, i) => {
-        const style: React.CSSProperties = {
-          top: img.top,
-          bottom: img.bottom,
-          left: img.left,
-          right: img.right,
-        }
-
         return (
           <FadeImage
             key={i}
             src={img.src}
             alt={img.alt}
             className="absolute -translate-x-1/2 -translate-y-1/2"
-            style={style}
           />
         )
       })}
