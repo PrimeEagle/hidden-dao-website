@@ -9,8 +9,8 @@ export default function Styles() {
       subtitle: "Central Chinese Gong Fu",
       description: "Won Hop Loong Chuan is an eclectic mix of Northern and Southern Chinese styles, which we refer to as 'Central Chinese'.",
       color: {
-        base: "bg-brand-starkAccent/40",
-        hover: "bg-brand-starkAccent/15",
+        base: "bg-brand-accent/40",
+        hover: "bg-brand-accent/15",
       },
       children: (
         <div className="relative w-full h-full">
@@ -41,8 +41,8 @@ export default function Styles() {
       subtitle: "Wu Style T'ai Chi Chuan",
       description: "Hong Kong branch of the Northern Wu Style Ta'i Chi Chuan.",
       color: {
-        base: "bg-brand-accent/40",
-        hover: "bg-brand-accent/15",
+        base: "bg-brand-starkAccent/40",
+        hover: "bg-brand-starkAccent/15",
       },
       children: (
         <div className="relative w-full h-full">
