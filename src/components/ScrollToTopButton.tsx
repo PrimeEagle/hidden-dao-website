@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { LuChevronUp } from "react-icons/lu";
 
@@ -15,96 +15,91 @@ interface ScrollToTopButtonProps {
 }
 
 export default function ScrollToTopButton({
-  threshold = 300,
-  fadeDelay = 2500,
+  threshold = 240,
+  fadeDelay = 1400,
   stickAtBottom = true,
-  bottomOffset = 24,
-  rightOffset = 24,
-  size = 48,
-  desktopBreakpoint = 768,
+  bottomOffset = { desktop: 32, mobile: 20 },
+  rightOffset = { desktop: 32, mobile: 20 },
+  size = { desktop: 48, mobile: 44 },
+  desktopBreakpoint = 1024,
 }: ScrollToTopButtonProps) {
-  const [mounted, setMounted] = useState(false);
-  const [visible, setVisible] = useState(false);
   const [show, setShow] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(true);
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [isDesktop, setIsDesktop] = useState(false);
+  const hideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const getResponsiveValue = (value: ResponsiveValue): number => {
-    if (typeof value === "number") return value;
-    return isDesktop ? value.desktop : value.mobile;
+  const getResponsiveValue = (v: ResponsiveValue) => {
+    if (typeof v === "number") return v;
+    return isDesktop ? v.desktop : v.mobile;
   };
-
-  const startFadeOutTimer = () => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    timeoutRef.current = setTimeout(() => setShow(false), fadeDelay);
-  };
-
-  const isAtBottom = () =>
-    typeof window !== "undefined" &&
-    window.innerHeight + window.scrollY >= document.body.offsetHeight;
 
   useEffect(() => {
-    setMounted(true);
-    if (typeof window === "undefined") return;
+    const hasWin = typeof window !== "undefined" && typeof document !== "undefined";
+    if (!hasWin) return;
 
-    setIsDesktop(window.innerWidth >= desktopBreakpoint);
+    const atBottom = () =>
+      window.innerHeight + window.scrollY >= Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
 
-    const handleResize = () =>
-      setIsDesktop(window.innerWidth >= desktopBreakpoint);
+    const computeIsDesktop = () => setIsDesktop(window.innerWidth >= desktopBreakpoint);
 
-    const handleScroll = () => {
-      if (window.scrollY > threshold) {
-        setVisible(true);
-        setShow(true);
-        if (timeoutRef.current) clearTimeout(timeoutRef.current);
-        if (!(stickAtBottom && isAtBottom())) startFadeOutTimer();
-      } else {
-        setVisible(false);
-        setShow(false);
-        if (timeoutRef.current) clearTimeout(timeoutRef.current);
-      }
+    const scheduleHide = () => {
+      if (hideTimer.current) clearTimeout(hideTimer.current);
+      if (fadeDelay <= 0) return;
+      if (stickAtBottom && atBottom()) return;
+      hideTimer.current = setTimeout(() => setShow(false), fadeDelay);
     };
 
+    const handleScroll = () => {
+      const scrolledPast = window.scrollY > threshold;
+      const bottom = atBottom();
+      if (stickAtBottom && bottom) {
+        setShow(true);
+        if (hideTimer.current) clearTimeout(hideTimer.current);
+        return;
+      }
+      setShow(scrolledPast);
+      if (scrolledPast) scheduleHide();
+    };
+
+    const handleResize = () => {
+      computeIsDesktop();
+      handleScroll();
+    };
+
+    computeIsDesktop();
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleResize);
-    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
       window.removeEventListener("scroll", handleScroll);
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      window.removeEventListener("resize", handleResize);
+      if (hideTimer.current) clearTimeout(hideTimer.current);
     };
   }, [threshold, fadeDelay, stickAtBottom, desktopBreakpoint]);
 
-  const scrollToTop = () => {
+  const onClick = () => {
     if (typeof window === "undefined") return;
-    setShow(true);
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  if (!mounted) return null; // avoid SSR mismatch
-
-  const buttonSize = getResponsiveValue(size);
-
   return (
     <AnimatePresence>
-      {visible && (
+      {show && (
         <motion.button
-          onClick={scrollToTop}
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{
-            opacity: show ? 1 : 0,
-            scale: show ? 1 : 0.8,
-            pointerEvents: show ? "auto" : "none",
-          }}
-          transition={{ duration: 0.4, ease: "easeInOut" }}
-          className="z-50 rounded-full bg-brand-light text-brand-secondary border-2 border-brand-secondary shadow-lg fixed flex items-center justify-center"
+          aria-label="Scroll to top"
+          onClick={onClick}
+          initial={{ opacity: 0, scale: 0.9, y: 8 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.9, y: 8 }}
+          transition={{ duration: 0.2 }}
+          className="fixed z-50 rounded-full shadow-md bg-brand-starkAccent text-white"
           style={{
             bottom: `${getResponsiveValue(bottomOffset)}px`,
             right: `${getResponsiveValue(rightOffset)}px`,
-            width: `${buttonSize}px`,
-            height: `${buttonSize}px`,
-            fontSize: `${buttonSize * 0.5}px`,
+            width: `${getResponsiveValue(size)}px`,
+            height: `${getResponsiveValue(size)}px`,
+            fontSize: `${getResponsiveValue(size) * 0.5}px`,
           }}
         >
           <LuChevronUp />

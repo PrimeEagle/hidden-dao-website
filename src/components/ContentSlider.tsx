@@ -1,10 +1,9 @@
-import { useState, ReactNode } from "react";
+import { ReactNode, useEffect, useMemo, useState } from "react";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import clsx from "clsx";
 import { ContentCard } from "@/components/ContentCard";
-import { MdArrowBackIos } from "react-icons/md";
-import { MdArrowForwardIos } from "react-icons/md";
+import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 
 type ContentSliderProps<T> = {
   className?: string;
@@ -12,76 +11,75 @@ type ContentSliderProps<T> = {
   renderItem: (item: T, index: number) => ReactNode;
 };
 
-export default function ContentSlider<T>({
-  className = "",
-  data,
-  renderItem,
-}: ContentSliderProps<T>) {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [loaded, setLoaded] = useState(false);
+export default function ContentSlider<T>({ className = "", data, renderItem }: ContentSliderProps<T>) {
+  const [hoverCapable, setHoverCapable] = useState(false);
+  const [current, setCurrent] = useState(0);
+  const [pages, setPages] = useState(1);
 
-  const [sliderRef, instanceRef] = useKeenSlider({
-    loop: false,
-    slides: { perView: 1, spacing: 12 },
-    breakpoints: {
-      "(min-width: 768px)": { slides: { perView: 2, spacing: 16 } },
-    },
-    slideChanged(slider) {
-      setCurrentSlide(slider.track.details.rel);
-    },
-    created() {
-      setLoaded(true);
-      requestAnimationFrame(() => {
-        instanceRef.current?.update();
+  useEffect(() => {
+    const m = typeof window !== "undefined" ? window.matchMedia("(hover: hover) and (pointer: fine)") : null;
+    setHoverCapable(!!m && m.matches);
+    if (m) {
+      const fn = (e: MediaQueryListEvent) => setHoverCapable(e.matches);
+      m.addEventListener?.("change", fn);
+      return () => m.removeEventListener?.("change", fn);
+    }
+  }, []);
+
+  const options = useMemo(
+    () => ({
+      loop: true,
+      drag: true,
+      slides: { perView: 1, spacing: 16 },
+      breakpoints: {
+        "(min-width: 640px)": { slides: { perView: 2, spacing: 16 } },
+        "(min-width: 1024px)": { slides: { perView: 3, spacing: 24 } },
+      },
+    }),
+    []
+  );
+
+  const [containerRef, instanceRef] = useKeenSlider<HTMLDivElement>(options, [
+    (s) => {
+      setCurrent(s.track.details.rel);
+      setPages(s.track.details.maxIdx + 1);
+      s.on("slideChanged", () => setCurrent(s.track.details.rel));
+      s.on("updated", () => setPages(s.track.details.maxIdx + 1));
+      s.on("destroyed", () => {
+        setCurrent(0);
+        setPages(1);
       });
     },
-  });
-
-  const pageCount = instanceRef.current
-    ? instanceRef.current.track.details.slides.length -
-      ((instanceRef.current.options.slides as any)?.perView ?? 1) +
-      1
-    : 0;
+  ]);
 
   return (
-    <div className={clsx("mx-auto", className)}>
-      <div className="flex items-center gap-3">
-        {loaded && (
-          <button
-            onClick={() => instanceRef.current?.prev()}
-            disabled={currentSlide === 0}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-brand-softAccent text-brand-secondary transition-colors hover:bg-brand-starkAccent hover:text-brand-light disabled:opacity-40"
-          >
-            <MdArrowBackIos className="translate-x-[3px]" />
-          </button>
-        )}
-
-        <div ref={sliderRef} className="keen-slider flex-1 min-w-0 w-full">
-          {data.map((item, i) => (
-            <div key={i} className="keen-slider__slide">
-              <ContentCard>{renderItem(item, i)}</ContentCard>
-            </div>
-          ))}
-        </div>
-
-        {loaded && (
-          <button
-            onClick={() => instanceRef.current?.next()}
-            disabled={currentSlide === pageCount - 1}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-brand-softAccent text-brand-secondary transition-colors hover:bg-brand-starkAccent hover:text-brand-light disabled:opacity-40"
-          >
-            <MdArrowForwardIos />
-          </button>
-        )}
+    <div className={clsx("w-full", className)}>
+      <div ref={containerRef} className="keen-slider">
+        {data.map((item, i) => (
+          <div key={i} className="keen-slider__slide">
+            <ContentCard>{renderItem(item, i)}</ContentCard>
+          </div>
+        ))}
       </div>
 
-      {loaded && pageCount > 1 && (
+      {hoverCapable && (
+        <div className="mt-4 flex items-center justify-between">
+          <button onClick={() => instanceRef.current?.prev()} className="rounded-lg bg-brand-light p-2 shadow">
+            <MdArrowBackIos />
+          </button>
+          <button onClick={() => instanceRef.current?.next()} className="rounded-lg bg-brand-light p-2 shadow">
+            <MdArrowForwardIos />
+          </button>
+        </div>
+      )}
+
+      {pages > 1 && (
         <div className="mt-6 flex justify-center gap-2">
-          {[...Array(pageCount).keys()].map((idx) => (
+          {Array.from({ length: pages }).map((_, idx) => (
             <button
               key={idx}
               onClick={() => instanceRef.current?.moveToIdx(idx)}
-              className={`h-3 w-3 rounded-full ${currentSlide === idx ? "bg-brand-starkAccent" : "bg-brand-light"}`}
+              className={`h-3 w-3 rounded-full ${current === idx ? "bg-brand-starkAccent" : "bg-brand-light"}`}
             />
           ))}
         </div>
