@@ -10,7 +10,7 @@ export default function Copyright({ entity, className = "" }: CopyrightProps) {
 
   return (
     <div
-      className={clsx("mx-auto max-w-7xl px-4 text-center text-sm text-brand-primary", className)}
+      className={clsx("mx-auto max-w-7xl px-4 text-center text-sm text-brand-primary", {className})}
     >
       <p>
         &copy; {year} {entity}. All rights reserved.

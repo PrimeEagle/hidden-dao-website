@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import clsx from "clsx";
 
 type Panel = {
@@ -6,7 +6,10 @@ type Panel = {
   title: string;
   subtitle: string;
   description?: string;
-  color: { base: string; hover: string };
+  color: {
+    base: string;
+    hover: string;
+  };
   children?: React.ReactNode;
 };
 
@@ -15,67 +18,63 @@ type HoverPanelsProps = {
   className?: string;
 };
 
-export default function HoverPanels({ panels, className = "" }: HoverPanelsProps) {
-  const [active, setActive] = useState<string | null>(null);
-  const [hoverCapable, setHoverCapable] = useState(false);
-
-  useEffect(() => {
-    const m = typeof window !== "undefined" ? window.matchMedia("(hover: hover) and (pointer: fine)") : null;
-    setHoverCapable(!!m && m.matches);
-    if (m) {
-      const fn = (e: MediaQueryListEvent) => setHoverCapable(e.matches);
-      m.addEventListener?.("change", fn);
-      return () => m.removeEventListener?.("change", fn);
-    }
-  }, []);
-
-  const onEnter = (id: string) => {
-    if (!hoverCapable) return;
-    setActive(id);
-  };
-
-  const onLeave = () => {
-    if (!hoverCapable) return;
-    setActive(null);
-  };
-
-  const onTap = (id: string) => {
-    if (hoverCapable) return;
-    setActive((prev) => (prev === id ? null : id));
-  };
+export default function HoverPanels({
+  panels,
+  className = "",
+}: HoverPanelsProps) {
+  const [hovered, setHovered] = useState<string | null>(null);
 
   return (
-    <div className={clsx("grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3", className)}>
-      {panels.map((panel) => {
-        const isActive = active === panel.id;
-        return (
-          <div
-            key={panel.id}
-            onMouseEnter={() => onEnter(panel.id)}
-            onMouseLeave={onLeave}
-            onClick={() => onTap(panel.id)}
-            className={clsx(
-              "relative rounded-xl p-5 transition-colors",
-              isActive ? panel.color.hover : panel.color.base
-            )}
-          >
-            <div className="flex items-start justify-between">
-              <div>
-                <h3 className="text-lg font-semibold">{panel.title}</h3>
-                <p className="text-sm opacity-80">{panel.subtitle}</p>
-              </div>
-            </div>
-
-            {panel.description && (
-              <p className={clsx("mt-2 text-sm", isActive ? "opacity-100" : "opacity-70")}>{panel.description}</p>
-            )}
-
-            <div className={clsx("mt-3 overflow-hidden transition-[max-height,opacity]", isActive ? "max-h-96 opacity-100" : "max-h-0 opacity-0")}>
+    <div className={clsx("flex w-full overflow-hidden rounded-xl", className)}>
+      {panels.map((panel) => (
+        <div
+          key={panel.id}
+          className="relative flex-1 h-full flex items-start justify-center transition-all duration-500 cursor-pointer group overflow-hidden"
+          onMouseEnter={() => setHovered(panel.id)}
+          onMouseLeave={() => setHovered(null)}
+        >
+          {/* Background visuals */}
+          {panel.children && (
+            <div className="absolute inset-0 w-full h-full">
               {panel.children}
             </div>
+          )}
+
+          {/* Tint overlay (above visuals, below text) */}
+          <div
+            className={`absolute inset-0 transition-colors duration-500 ${
+              hovered === panel.id ? panel.color.hover : panel.color.base
+            }`}
+          />
+
+          {/* Foreground text */}
+          <div className="relative z-10 text-center text-white px-6 pt-12 w-full">
+            <div className="mx-auto min-h-[4.5rem] flex items-start justify-center">
+              <h2 className="text-3xl font-bold overflow-hidden font-heading bg-black/5 backdrop-blur-sm px-2 py-1 rounded">
+                {panel.title}
+              </h2>
+            </div>
+
+            <div
+              className={`transition-all duration-500 bg-black/5 backdrop-blur-sm px-2 py-1 rounded ${
+                hovered === panel.id
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-4"
+              }`}
+            >
+              <div className="mt-2 min-h-[1.25rem] flex items-start justify-center overflow-hidden">
+                <p className="text-sm uppercase tracking-wide font-body font-bold">
+                  {panel.subtitle}
+                </p>
+              </div>
+
+              {panel.description && (
+                <p className="mt-2 text-sm font-body">{panel.description}</p>
+              )}
+            </div>
           </div>
-        );
-      })}
+        </div>
+      ))}
     </div>
   );
 }

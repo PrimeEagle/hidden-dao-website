@@ -12,7 +12,7 @@ export default function FadeImage({ src, alt = "", className = "" }: FadeImagePr
     <motion.img
       src={src}
       alt={alt}
-      className={clsx("w-full rounded-2xl", className)}
+      className={clsx("w-full rounded-2xl", {className})}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -40 }}
