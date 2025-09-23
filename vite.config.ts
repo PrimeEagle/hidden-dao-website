@@ -5,4 +5,9 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   plugins: [tsConfigPaths(), tanstackStart(), tailwindcss()],
+  server: {
+    host: true,
+    port: 3000,
+    allowedHosts: ['morpheus.local']
+  },
 })

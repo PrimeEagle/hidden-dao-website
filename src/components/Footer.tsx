@@ -14,7 +14,13 @@ export default function Footer({ entity, className = "" }: FooterProps) {
 	>
 	  <div className="px-4 py-2 bg-brand-light rounded">
 	  </div>
-	  <Copyright entity={`${entity}`} />
+	  <Copyright
+	  	entity={`${entity}`} 
+		terms={[
+			{ label: "Privacy Policy", href: "/privacy"},
+			{ label: "Terms of Service", href: "/terms"},
+		]}
+		/>
 	</footer>
   )
 }

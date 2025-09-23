@@ -23,33 +23,34 @@ export default function BusinessHours({
       )}
     >
       <div className="p-2">
-        {title === "" ? "" : (
-        <h2 className="text-2xl font-semibold mb-4 text-center text-brand-primary">
-          {title}
-        </h2>
+        {title === "" ? (
+          <h2 className="sr-only">Business Hours</h2>
+        ) : (
+          <h2 className="text-2xl font-semibold mb-4 text-center text-brand-primary">
+            {title}
+          </h2>
         )}
-        <ul className="divide-y divide-brand-softAccent">
+        <dl className="divide-y divide-brand-softAccent" aria-label="Business hours">
           {hours.map((entry, i) =>
-            hideClosed && entry.time === "Closed" ? (
-              ""
-            ) : (
-              <li key={i} className="flex justify-between py-2">
-                <span className="font-medium text-brand-primary">
+            hideClosed && entry.time === "Closed" ? null : (
+              <div key={i} className="flex justify-between py-3 sm:py-4">
+                <dt className="font-medium text-base sm:text-lg text-brand-primary">
                   {entry.day}
-                </span>
-                <span
-                  className={
+                </dt>
+                <dd
+                  className={clsx(
+                    "text-base sm:text-lg",
                     entry.time === "Closed"
                       ? "text-brand-starkAccent"
                       : "text-brand-primary"
-                  }
+                  )}
                 >
                   {entry.time}
-                </span>
-              </li>
+                </dd>
+              </div>
             )
           )}
-        </ul>
+        </dl>
       </div>
     </div>
   );
