@@ -3,18 +3,20 @@ import clsx from "clsx";
 
 type MapProps = {
   src: string;
+  locationName: string;
   className?: string;
 };
 
-export default function GoogleMap({ src, className = "" }: MapProps) {
+export default function GoogleMap({ src, locationName, className = "" }: MapProps) {
   return (
-    <div
+    <section
       className={clsx(
         "hover:brightness-105 w-full h-full rounded-lg shadow overflow-hidden",
         className
       )}
+      aria-label={`Map showing ${locationName} location.`}
     >
-      <FadeIFrame src={src} className="w-full h-full" />
-    </div>
+      <FadeIFrame src={src} title="Google Map" className="w-full h-full" />
+    </section>
   );
 }

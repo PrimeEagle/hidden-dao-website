@@ -33,7 +33,7 @@ export default function Copyright({
               <li key={i}>
                 <Link
                   to={term.href}
-                  className="underline hover:text-brand-secondary focus:outline-none focus:ring-2 focus:ring-brand-starkAccent rounded"
+                  className="px-2 py-1 underline hover:text-brand-secondary focus:outline-none focus:ring-2 focus:ring-brand-starkAccent rounded text-xs sm:text-sm"
                 >
                   {term.label}
                 </Link>

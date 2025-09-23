@@ -110,7 +110,7 @@ export default function EmailUs() {
           Your Email
         </label>
         {error && touched && (
-          <p className="mt-1 text-sm text-brand-starkAccent">{error}</p>
+          <p className="mt-1 text-sm text-brand-starkAccent" role="alert">{error}</p>
         )}
       </div>
 
@@ -122,7 +122,7 @@ export default function EmailUs() {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           className="peer w-full h-full rounded-lg border px-4 pt-5 pb-2 
-                     border-brand-softAccent bg-brand-light resize-none
+                     border-brand-softAccent bg-brand-light resize-y
                      focus:outline-none focus:ring-2 focus:ring-brand-starkAccent"
         />
         <label
@@ -138,6 +138,7 @@ export default function EmailUs() {
       <button
         type="submit"
         disabled={!isFormValid || status === "loading"}
+        aria-disabled={!isFormValid || status === "loading"}
         className={`w-full rounded px-4 py-2 font-medium transition-colors flex items-center justify-center gap-2
           ${
             isFormValid && status !== "loading"
@@ -149,13 +150,13 @@ export default function EmailUs() {
       </button>
 
       {status === "success" && (
-        <div className="flex items-center gap-2 text-green-600 mt-2 opacity-100 transition-opacity duration-500">
+        <div className="flex items-center gap-2 text-green-600 mt-2 opacity-100 transition-opacity duration-500" role="status">
           <MdCheckCircle className="w-5 h-5" />
           <span>Message Sent!</span>
         </div>
       )}
       {status === "error" && (
-        <div className="flex items-center gap-2 text-brand-starkAccent mt-2 opacity-100 transition-opacity duration-500">
+        <div className="flex items-center gap-2 text-brand-starkAccent mt-2 opacity-100 transition-opacity duration-500" role="status">
           <MdError className="w-5 h-5" />
           <span>Something went wrong. Please try again.</span>
         </div>
