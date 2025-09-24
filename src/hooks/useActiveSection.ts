@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react"
 
-export function useActiveSection(sectionIds: string[]) {
+export default function useActiveSection(sectionIds: string[]) {
   const [active, setActive] = useState(sectionIds[0])
   const lastScrollY = useRef(0)
   const lockUntil = useRef(0)

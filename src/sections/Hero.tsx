@@ -1,4 +1,4 @@
-import Section from "@/components/Section";
+import Section from "@/sections/_Section";
 import FadeVideo from "@/components/FadeVideo";
 
 export default function Hero() {

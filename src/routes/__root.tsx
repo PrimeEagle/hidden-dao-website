@@ -5,6 +5,7 @@ import {
   createRootRoute,
   HeadContent,
   Scripts,
+  useLocation,
 } from "@tanstack/react-router";
 import appCss from "../styles/app.css?url";
 import Navbar from "../components/Navbar";
@@ -20,6 +21,9 @@ function NotFound() {
 }
 
 function RootComponent() {
+  const location = useLocation();
+  const hideNavbar = ["/privacy", "/terms"].includes(location.pathname);
+
   const navItems = [
     { id: "hero", label: "Home" },
     { id: "about", label: "About" },
@@ -31,7 +35,7 @@ function RootComponent() {
 
   return (
     <RootDocument>
-      <Navbar navItems={navItems} />
+      {!hideNavbar && <Navbar navItems={navItems} />}
       <main className="pt-16">
         <Outlet />
       </main>
@@ -60,9 +64,15 @@ function RootDocument({ children }: { children: ReactNode }) {
         <HeadContent />
         <HeaderCustomContent
           googleFonts={[
-            "https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap",
-            "https://fonts.googleapis.com/css2?family=Quattrocento:wght@400;700&display=swap",
-            "https://fonts.googleapis.com/css2?family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap",
+            { family: "Kaushan Script", preload: false },
+            { family: "Quattrocento", weights: [400, 700], preload: true },
+            {
+              family: "Quattrocento Sans",
+              weights: [400, 700],
+              axes: [{ name: "ital" }],
+              preload: true,
+            },
+            { family: "Zhi Mang Xing", preload: false },
           ]}
           favicon={[
             { type: "image/svg+xml", href: "/favicon.svg" },

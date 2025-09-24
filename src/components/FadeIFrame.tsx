@@ -3,10 +3,11 @@ import clsx from "clsx";
 
 type FadeIFrameProps = {
   src: string;
+  title: string;
   className?: string;
 };
 
-export default function FadeIFrame({ src, className = "" }: FadeIFrameProps) {
+export default function FadeIFrame({ src, title, className = "" }: FadeIFrameProps) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -22,6 +23,7 @@ export default function FadeIFrame({ src, className = "" }: FadeIFrameProps) {
       <iframe
         src={src}
         className="w-full h-full"
+        title={title}
         loading="lazy"
         style={{ border: 0 }}
         allowFullScreen

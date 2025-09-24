@@ -1,4 +1,4 @@
-import Section from "@/components/Section";
+import Section from "@/sections/_Section";
 import ContentSlider from "@/components/ContentSlider";
 
 const testimonials = [

@@ -1,30 +1,50 @@
-import FadeImage from "@/components/FadeImage"
+import FadeImage from "./FadeImage";
+import clsx from "clsx";
 
-type Position = number | string // e.g. 200, "20%"
+type PositionValue =
+  | "0"
+  | "px"
+  | "full"
+  | "1/2"
+  | "1/3"
+  | "2/3"
+  | "1/4"
+  | "3/4"
+  | (string & {});
 
-type BackgroundImage =
-  | { src: string; alt: string; top?: Position; bottom?: never; left?: Position; right?: never }
-  | { src: string; alt: string; top?: Position; bottom?: never; right?: Position; left?: never }
-  | { src: string; alt: string; bottom?: Position; top?: never; left?: Position; right?: never }
-  | { src: string; alt: string; bottom?: Position; top?: never; right?: Position; left?: never }
+type BackgroundImage = {
+  src: string;
+  alt: string;
+  className?: string;
+  top?: PositionValue;
+  bottom?: PositionValue;
+  left?: PositionValue;
+  right?: PositionValue;
+};
 
-interface BackgroundLayerProps {
-  images: BackgroundImage[]
-}
+type MultiBackgroundImagesProps = {
+  images: BackgroundImage[];
+  className?: string;
+};
 
-export default function MultiBackgroundImages({ images }: BackgroundLayerProps) {
+export default function MultiBackgroundImages({
+  images,
+  className = "",
+}: MultiBackgroundImagesProps) {
   return (
-    <div className="absolute inset-0 -z-10">
-      {images.map((img, i) => {
-        return (
-          <FadeImage
-            key={i}
-            src={img.src}
-            alt={img.alt}
-            className="absolute -translate-x-1/2 -translate-y-1/2"
-          />
-        )
-      })}
+    <div className={clsx("absolute inset-0 -z-10", className)}>
+      {images.map((img, i) => (
+        <FadeImage
+          key={i}
+          src={img.src}
+          alt={img.alt}
+          className={clsx("absolute", img.className)}
+          top={img.top}
+          bottom={img.bottom}
+          left={img.left}
+          right={img.right}
+        />
+      ))}
     </div>
-  )
+  );
 }

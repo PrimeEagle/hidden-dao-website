@@ -1,21 +1,32 @@
 import HoverPanels from "@/components/HoverPanels";
-import Section from "@/components/Section";
+import Section from "@/sections/_Section";
 
 export default function Styles() {
-   const panels = [
+  const panels = [
     {
       id: "kungfu",
       title: "Gong Fu",
       subtitle: "Central Chinese Gong Fu",
-      description: "Won Hop Loong Chuan is an eclectic mix of Northern and Southern Chinese styles, which we refer to as 'Central Chinese'.",
+      description:
+        "Won Hop Loong Chuan is an eclectic mix of Northern and Southern Chinese styles, which we refer to as 'Central Chinese'.",
       color: {
         base: "bg-brand-accent/40",
         hover: "bg-brand-accent/15",
       },
       children: (
         <div className="relative w-full h-full">
-          <img src="/luoyang-mountains.png" className="absolute inset-0 w-full h-full object-cover" />
-          <img src="/kung-fu.png" className="absolute bottom-0 left-0 right-0 object-contain mx-auto" />
+          <img
+            src="/luoyang-mountains.png"
+            alt="Mountains"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute bottom-0 left-0 right-0 flex justify-center">
+            <img
+              src="/kung-fu.png"
+              alt="Kung Fu"
+              className="h-96 w-auto object-contain"
+            />
+          </div>
         </div>
       ),
     },
@@ -23,15 +34,26 @@ export default function Styles() {
       id: "karate",
       title: "Karate",
       subtitle: "Okinawan Tomarite Karate",
-      description: "The style of karate we teach comes from the small fishing village of Tomari, Okinawa.",
+      description:
+        "The style of karate we teach comes from the small fishing village of Tomari, Okinawa.",
       color: {
         base: "bg-brand-secondary/40",
         hover: "bg-brand-secondary/15",
       },
       children: (
         <div className="relative w-full h-full">
-          <img src="/tomari-beach.png" className="absolute inset-0 w-full h-full object-cover" />
-          <img src="/karate.png" className="absolute bottom-0 left-0 right-0 object-contain mx-auto" />
+          <img
+            src="/tomari-beach.png"
+            alt="Rocky Beach"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute bottom-0 left-0 right-0 flex justify-center">
+            <img
+              src="/karate.png"
+              alt="Karate"
+              className="h-96 w-auto object-contain"
+            />
+          </div>
         </div>
       ),
     },
@@ -46,8 +68,18 @@ export default function Styles() {
       },
       children: (
         <div className="relative w-full h-full">
-          <img src="/forbidden-city.png" className="absolute inset-0 w-full h-full object-cover" />
-          <img src="/tai-chi.png" className="absolute bottom-0 left-0 right-0 object-contain mx-auto" />
+          <img
+            src="/forbidden-city.png"
+            alt="Forbidden City"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute bottom-0 left-0 right-0 flex justify-center">
+            <img
+              src="/tai-chi.png"
+              alt="T'ai Chi"
+              className="h-96 w-auto object-contain"
+            />
+          </div>
         </div>
       ),
     },
@@ -55,7 +87,7 @@ export default function Styles() {
 
   return (
     <Section id="styles" title="Styles" subTitle="Styles We Teach">
-      <HoverPanels panels={panels} className="h-[600px]"/>
+      <HoverPanels panels={panels} className="h-[600px]" />
     </Section>
   );
 }

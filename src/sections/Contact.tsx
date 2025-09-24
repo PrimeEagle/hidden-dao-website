@@ -1,4 +1,4 @@
-import Section from "@/components/Section";
+import Section from "@/sections/_Section";
 import Map from "@/components/GoogleMap";
 import { LuInstagram } from "react-icons/lu";
 import { ImYoutube } from "react-icons/im";
