@@ -11,17 +11,22 @@ export default function Footer({ entity, className = "" }: FooterProps) {
     <footer
       id="site-footer"
       className={clsx(
-        "relative z-10 min-h-40 flex items-center justify-center before:absolute before:top-0 before:left-0 before:w-full before:h-[2px] before:bg-gradient-to-r before:from-transparent before:via-brand-secondary before:to-transparent",
+        "relative z-10 min-h-40 flex flex-col items-center justify-center",
         className
       )}
     >
-      <Copyright
-        entity={`${entity}`}
-        terms={[
-          { label: "Privacy Policy", href: "/privacy" },
-          { label: "Terms of Service", href: "/terms" },
-        ]}
-      />
+      <div className="mb-3">
+        <img src="/divider-long.png" width="1000" />
+      </div>
+      <div>
+        <Copyright
+          entity={`${entity}`}
+          terms={[
+            { label: "Privacy Policy", href: "/privacy" },
+            { label: "Terms of Service", href: "/terms" },
+          ]}
+        />
+      </div>
     </footer>
   );
 }

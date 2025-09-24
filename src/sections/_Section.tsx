@@ -29,10 +29,13 @@ export default function Section({
           </h2>
         )}
         {subTitle && (
-          <h3 className="text-4xl font-heading mb-5 text-left font-bold text-brand-secondary">
+          <h3 className="text-4xl font-heading  text-left font-bold text-brand-secondary">
             {subTitle}
           </h3>
         )}
+        <div className="mt-1 mb-5">
+          <img src="/divider-short.png" width="175" />
+        </div>
         <div className="text-base text-brand-primary leading-relaxed">
           {children}
         </div>
