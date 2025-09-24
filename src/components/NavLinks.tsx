@@ -39,7 +39,7 @@ export default function NavLinks({
           {active === item.id && (
             <motion.div
               layoutId={layoutId}
-              className="absolute left-0 right-0 -bottom-1 h-0.5 bg-brand-starkAccent"
+              className="absolute left-0 right-0 -bottom-1 h-0.5 bg-brand-accent"
               transition={{ type: "spring", stiffness: 500, damping: 30 }}
             />
           )}

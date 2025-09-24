@@ -81,8 +81,7 @@ export default function HoverPanels({
             aria-controls={`${panel.id}-content`}
             className={clsx(
               "relative flex-1 min-h-[200px] rounded-xl overflow-hidden shadow-lg cursor-pointer transition-all duration-300 motion-reduce:transition-none",
-              panel.color.base,
-              expanded ? ["sm:flex-[2]", panel.color.hover] : "sm:flex-[1]"
+              expanded ? "sm:flex-[2]" : "sm:flex-[1]"
             )}
             onClick={() => togglePanel(panel.id)}
             onMouseEnter={() => {
@@ -110,8 +109,6 @@ export default function HoverPanels({
                 expanded ? panel.color.hover : panel.color.base
               )}
             />
-
-            <div className="absolute inset-0 bg-brand-primary/40" />
 
             <div className="relative z-10 flex flex-col justify-start items-center h-full p-4 text-center text-brand-light">
               <div className="bg-brand-primary/5 backdrop-blur-sm rounded-xl px-4 py-2 max-w-md">

@@ -11,7 +11,7 @@ export default function Styles() {
         "Won Hop Loong Chuan is an eclectic mix of Northern and Southern Chinese styles, which we refer to as 'Central Chinese'.",
       color: {
         base: "bg-brand-accent/40",
-        hover: "bg-brand-accent/5",
+        hover: "bg-brand-accent/20",
       },
       children: (
         <div className="relative w-full h-full">
@@ -31,7 +31,7 @@ export default function Styles() {
         "The style of karate we teach comes from the small fishing village of Tomari, Okinawa.",
       color: {
         base: "bg-brand-secondary/40",
-        hover: "bg-brand-secondary/5",
+        hover: "bg-brand-secondary/20",
       },
       children: (
         <div className="relative w-full h-full">
@@ -50,7 +50,7 @@ export default function Styles() {
       description: "Hong Kong branch of the Northern Wu Style Ta'i Chi Chuan.",
       color: {
         base: "bg-brand-starkAccent/40",
-        hover: "bg-brand-starkAccent/5",
+        hover: "bg-brand-starkAccent/20",
       },
       children: (
         <div className="relative w-full h-full">
