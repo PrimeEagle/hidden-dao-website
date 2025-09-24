@@ -25,9 +25,11 @@ export default function HoverPanels({
   const prefersReducedMotion = useRef(false);
 
   useEffect(() => {
-    prefersReducedMotion.current = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
+    if (typeof window !== "undefined") {
+      prefersReducedMotion.current = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+    }
   }, []);
 
   const togglePanel = (id: string) => {
@@ -109,28 +111,32 @@ export default function HoverPanels({
               )}
             />
 
-            <div className="absolute inset-0 bg-black/40" />
+            <div className="absolute inset-0 bg-brand-primary/40" />
 
-            <div className="relative z-10 flex flex-col justify-start items-center h-full p-4 text-center text-white">
-              <h3 className="text-xl font-bold">{panel.title}</h3>
+            <div className="relative z-10 flex flex-col justify-start items-center h-full p-4 text-center text-brand-light">
+              <div className="bg-brand-primary/5 backdrop-blur-sm rounded-xl px-4 py-2 max-w-md">
+                <h3 className="text-4xl font-bold font-logo">{panel.title}</h3>
 
-              <div
-                id={`${panel.id}-content`}
-                ref={(el) => {
-                  contentRefs.current[panel.id] = el;
-                }}
-                className="overflow-hidden"
-                style={{ maxHeight: 0, opacity: 0, marginTop: 0 }}
-                aria-live="polite"
-              >
-                {panel.subtitle && (
-                  <p className="text-lg font-medium">{panel.subtitle}</p>
-                )}
-                {panel.description && (
-                  <p className="mt-2 text-sm sm:text-base max-w-md">
-                    {panel.description}
-                  </p>
-                )}
+                <div
+                  id={`${panel.id}-content`}
+                  ref={(el) => {
+                    contentRefs.current[panel.id] = el;
+                  }}
+                  className="overflow-hidden"
+                  style={{ maxHeight: 0, opacity: 0, marginTop: 0 }}
+                  aria-live="polite"
+                >
+                  {panel.subtitle && (
+                    <p className="text-xl font-medium mt-2 font-heading">
+                      {panel.subtitle}
+                    </p>
+                  )}
+                  {panel.description && (
+                    <p className="mt-2 text-body sm:text-sm text-left font-body">
+                      {panel.description}
+                    </p>
+                  )}
+                </div>
               </div>
             </div>
           </div>

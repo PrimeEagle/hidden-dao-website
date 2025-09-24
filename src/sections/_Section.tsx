@@ -21,7 +21,7 @@ export default function Section({
   className = "",
 }: SectionProps) {
   return (
-    <section id={id} className={`relative py-8 px-4 ${className}`}>
+    <section id={id} className={`relative py-18 px-4 ${className}`}>
       <div className={fullWidth ? "" : "mx-auto max-w-3xl"}>
         {title && (
           <h2 className="text-2xl font-body text-left text-brand-accent font-bold [font-variant:small-caps]">
