@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import ShortStroke from "@/assets/shortstroke.svg?react";
 
 export type NavItem = {
   id: string;
@@ -29,9 +30,7 @@ export default function NavLinks({
               handleClick(item.id);
             }}
             className={
-              active === item.id
-                ? "text-brand-light"
-                : "text-brand-light/70"
+              active === item.id ? "text-brand-light" : "text-brand-light/70"
             }
           >
             {item.label}
@@ -39,9 +38,11 @@ export default function NavLinks({
           {active === item.id && (
             <motion.div
               layoutId={layoutId}
-              className="absolute left-0 right-0 -bottom-1 h-0.5 bg-brand-accent"
+              className="absolute left-0 right-0 -bottom-1 h-[5px]"
               transition={{ type: "spring", stiffness: 500, damping: 30 }}
-            />
+            >
+              <ShortStroke fill="currentColor" className="h-full w-full text-brand-accent" preserveAspectRatio="none" />
+            </motion.div>
           )}
         </li>
       ))}

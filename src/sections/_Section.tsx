@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import { MdKeyboardDoubleArrowUp } from "react-icons/md";
 
 type SectionProps = {
   id: string;
@@ -7,7 +6,6 @@ type SectionProps = {
   subTitle?: string;
   children: ReactNode;
   fullWidth?: boolean;
-  hideBackToTop?: boolean;
   className?: string;
 };
 
@@ -17,35 +15,31 @@ export default function Section({
   subTitle = "",
   children,
   fullWidth = false,
-  hideBackToTop = true,
   className = "",
 }: SectionProps) {
   return (
     <section id={id} className={`relative py-18 px-4 ${className}`}>
       <div className={fullWidth ? "" : "mx-auto max-w-3xl"}>
-        {title && (
-          <h2 className="text-2xl font-body text-left text-brand-accent font-bold [font-variant:small-caps]">
-            {title}
-          </h2>
-        )}
-        {subTitle && (
-          <h3 className="text-4xl font-heading  text-left font-bold text-brand-secondary">
-            {subTitle}
-          </h3>
-        )}
-        <div className="mt-1 mb-5">
-          <img src="/divider-short.png" width="175" />
-        </div>
+        {title.length > 0 || subTitle.length > 0 ? (
+          <>
+            {title && (
+              <h2 className="text-2xl font-body text-left text-brand-accent font-bold [font-variant:small-caps]">
+                {title}
+              </h2>
+            )}
+            {subTitle && (
+              <h3 className="text-4xl font-heading text-left font-bold text-brand-secondary">
+                {subTitle}
+              </h3>
+            )}
+            <div className="mt-1 mb-5">
+              <img src="/divider-short.png" width="175" />
+            </div>
+          </>
+        ) : null}
         <div className="text-base text-brand-primary leading-relaxed">
           {children}
         </div>
-        {hideBackToTop ? (
-          ""
-        ) : (
-          <a href="#hero">
-            <MdKeyboardDoubleArrowUp color="#0000FF" size="16px" />
-          </a>
-        )}
       </div>
     </section>
   );
