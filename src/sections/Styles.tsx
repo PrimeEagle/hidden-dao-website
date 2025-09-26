@@ -6,7 +6,7 @@ export default function Styles() {
     {
       id: "kungfu",
       title: "Gong Fu",
-      subtitle: "Central Chinese Gong Fu",
+      subtitle: "Won Hop Loong Chuan",
       description:
         "Won Hop Loong Chuan is an eclectic mix of Northern and Southern Chinese styles, which we refer to as 'Central Chinese'.",
       color: {
