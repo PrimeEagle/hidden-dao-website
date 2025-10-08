@@ -75,7 +75,6 @@ function RootDocument({ children }: { children: ReactNode }) {
             { family: "Yuji Mai", 
               weights: [400],
               preload: true },
-            // { family: "Zhi Mang Xing", preload: false },
           ]}
           favicon={[
             { type: "image/svg+xml", href: "/favicon.svg" },

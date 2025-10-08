@@ -39,80 +39,96 @@ export default function Hero() {
   const cloud3Ref = useWiggle(1236, 0.02, 18);
 
   return (
-    <Section id="hero" fullWidth>
-      <div className="w-full flex flex-col lg:flex-row">
-        <div className="w-full lg:w-1/2 h-[300px] lg:h-[600px] flex flex-col items-center justify-center">
-          <div className="font-logo text-9xl bg-gradient-to-t from-[#372537] to-[#664c66] bg-clip-text text-transparent mb-4 pr-2">
+    <Section
+      id="hero"
+      fullWidth
+      noPadding
+      className="h-screen w-screen flex flex-col lg:flex-row overflow-hidden"
+    >
+      {/* LEFT */}
+      <div className="flex flex-1 flex-col min-w-[50vw] justify-between items-center px-8">
+        <div>
+          <div className="font-logo text-9xl lg:text-8xl bg-gradient-to-t from-[#372537] to-[#664c66] bg-clip-text text-transparent px-2">
             Hidden Dao
-          </div>      
-          <div className="font-heading text-3xl tracking-wide bg-gradient-to-t from-[#4e3a33] to-[#5f473d] bg-clip-text text-transparent [font-variant:small-caps] border p-2">
+          </div>
+
+          <div className="font-heading text-2xl lg:text-3xl tracking-wide bg-gradient-to-t from-[#4e3a33] to-[#5f473d] bg-clip-text text-transparent [font-variant:small-caps]">
             Train the Body, Refine the Spirit
           </div>
-          <div className="font-heading text-lg text-brand-accent">
-            <p className="text-center mb-0.5">
-              A different kind of martial arts school.
-            </p>
-            <p className="text-center mb-0.5">
-              No gimmicks, no sales pitches, just genuine, personalized
-              instruction.
-            </p>
-            <p className="text-center mb-0.5">
-              Learn <span className="italic font-bold">kung fu</span>,{" "}
-              <span className="italic font-bold">t'ai chi</span>,{" "}
-              <span className="italic font-bold">karate</span>, and{" "}
-              <span className="italic font-bold">Daoism</span> in a natural
-              outdoor setting.
-            </p>
+        </div>
+
+        <div className="font-heading text-lg text-brand-secondary text-center leading-relaxed">
+          <p className="italic mb-1 text-brand-starkAccent">
+            A different kind of martial arts school.
+          </p>
+          <p className="mb-1">No gimmicks, no sales pitches, no hidden fees.</p>
+          <p className="mb-1">Just genuine, personalized instruction.</p>
+          <p>
+            Learn <span className="font-bold italic">kung fu</span>,{" "}
+            <span className="font-bold italic">t'ai chi</span>,{" "}
+            <span className="font-bold italic">karate</span>, and{" "}
+            <span className="font-bold italic">Daoism</span> in a natural
+            outdoor setting.
+          </p>
+          <div className="flex justify-center mt-4">
             <img
               src="/hidden-dao-seal.png"
               alt="Seal Stamp"
-              className="absolute w-[50vw] max-w-[75px] left-[25%] h-auto"
+              className="w-[70px] h-auto"
             />
           </div>
         </div>
-        <div className="w-full lg:w-1/2 h-[600px] relative flex items-center justify-center overflow-hidden">
+        <div>
+          <div className="flex -translate-y-[100%]">
+            <button
+              type="button"
+              className="mt-6 rounded px-6 py-4 bg-brand-starkAccent text-brand-light text-2xl font-heading hover:opacity-90 transition"
+            >
+              Sign Up Now!
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* RIGHT */}
+      <div className="relative flex-1 flex justify-center">
+        <div className="flex h-screen min-h-[450px] aspect-square items-center">
           <img
             src="/yin-yang.png"
             alt="Yin Yang"
-            className="absolute w-[50vw] max-w-[600px] h-auto animate-[spin_180s_linear_infinite]"
+            className="object-contain animate-[spin_180s_linear_infinite] z-0"
           />
 
-          <img
+          {/* <img
             ref={cloud1Ref}
             src="/cloud-1.png"
             alt="Cloud 1"
-            className="absolute w-[35vw] max-w-[500px] top-[10%] left-[1%] z-10"
+            className="absolute top-[25%] left-[20%] w-[35%] z-10"
           />
           <img
             ref={cloud2Ref}
             src="/cloud-2.png"
             alt="Cloud 2"
-            className="absolute w-[40vw] max-w-[500px] top-[43%] right-[1%] z-10"
+            className="absolute top-[50%] right-[15%] w-[40%] z-10"
           />
           <img
             ref={cloud3Ref}
             src="/cloud-3.png"
             alt="Cloud 3"
-            className="absolute w-[38vw] max-w-[550px] top-[70%] left-[10%] z-10"
-          />
+            className="absolute bottom-[10%] left-[25%] w-[38%] z-10"
+          /> */}
 
-          <div className="absolute left-[17%] text-center">
-            <div className="font-chinese text-8xl bg-gradient-to-t from-[#3c3c3c] to-[#674d41] bg-clip-text text-transparent [writing-mode:vertical-rl]">
-              隱道
-            </div>
+          {/* <div className="absolute top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] z-20 [writing-mode:vertical-rl] font-chinese bg-gradient-to-t from-[#3c3c3c] to-[#674d41] bg-clip-text text-transparent text-[8%]">
+            隱道
           </div>
 
-          <div className="absolute left-[3%] top-1/2 -translate-y-1/2">
-            <div className="font-chinese text-4xl text-[#251a18] [writing-mode:vertical-rl]">
-              道隱無名
-            </div>
+          <div className="absolute top-1/2 left-[15%] -translate-y-[50%] z-20 [writing-mode:vertical-rl] font-chinese text-[#251a18] text-[5%]">
+            道隱無名
           </div>
 
-          <div className="absolute right-[5%] top-[15%] -translate-y-1/2">
-            <div className="font-chinese text-4xl text-[#251a18] [writing-mode:vertical-rl]">
-              隱道宗門
-            </div>
-          </div>
+          <div className="absolute top-1/2 right-[15%] -translate-y-[50%] z-20 [writing-mode:vertical-rl] font-chinese text-[#251a18] text-[5%]">
+            隱道宗門
+          </div> */}
         </div>
       </div>
     </Section>
