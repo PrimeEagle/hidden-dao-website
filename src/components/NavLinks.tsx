@@ -22,7 +22,7 @@ export default function NavLinks({
   return (
     <ul className={className}>
       {navItems.map((item) => (
-        <li key={item.id} className="relative">
+        <li key={item.id} className="relative text-xl">
           <a
             href={`#${item.id}`}
             onClick={(e) => {
@@ -30,7 +30,7 @@ export default function NavLinks({
               handleClick(item.id);
             }}
             className={
-              active === item.id ? "text-brand-light" : "text-brand-light/70"
+              active === item.id ? "text-brand-light" : "text-brand-light/70 hover:text-brand-accent"
             }
           >
             {item.label}
