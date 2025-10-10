@@ -96,7 +96,7 @@ export default function Hero() {
             ref={contentBoxRef}
             className="flex flex-col items-center text-center w-fit max-w-full"
           >
-            <div className="font-logo text-6xl md:text-8xl pt-18 xl:pt-0 bg-gradient-to-t from-[#372537] to-[#664c66] bg-clip-text text-transparent px-2">
+            <div className="font-logo text-6xl md:text-8xl bg-gradient-to-t from-[#372537] to-[#664c66] bg-clip-text text-transparent px-2">
               Hidden Dao
             </div>
 
@@ -104,7 +104,7 @@ export default function Hero() {
               Train the Body, Refine the Spirit
             </div>
 
-            <div className="font-heading text-sm md:text-lg text-brand-secondary text-center leading-relaxed pt-6">
+            <div className="font-heading text-sm md:text-lg text-brand-secondary text-center leading-relaxed pt-4 xl:pt-6">
               <p className="italic mb-1 text-brand-accent">
                 A different kind of martial arts school.
               </p>
@@ -127,10 +127,10 @@ export default function Hero() {
                 />
               </div>
             </div>
-            <div className="pt-6">
+            <div className="xl:pt-6">
               <button
                 type="button"
-                className="mt-6 rounded px-6 py-4 bg-brand-starkAccent text-brand-light text-2xl font-heading hover:opacity-90 transition"
+                className="mt-4 xl:mt-6 mb-8 xl:mb-0 rounded px-6 py-2 xl:py-4 bg-brand-starkAccent text-brand-light text-2xl font-heading hover:opacity-90 transition"
               >
                 Sign Up Now!
               </button>

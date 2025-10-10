@@ -41,7 +41,7 @@ export default function ScrollToTopButton({
   stickAtBottom = true,
   bottomOffset = { desktop: 32, mobile: 24 },
   rightOffset = { desktop: 32, mobile: 16 },
-  size = { desktop: 48, mobile: 64 },
+  size = { desktop: 42, mobile: 54 },
   desktopBreakpoint = 768,
 }: ScrollToTopButtonProps) {
   const [show, setShow] = useState(false);

@@ -33,12 +33,12 @@ export default function Section({
       {title.length > 0 || subTitle.length > 0 ? (
         <>
           {title && (
-            <h2 className="text-2xl font-body text-left text-brand-accent font-bold [font-variant:small-caps]">
+            <h2 className="text-xl sm:text-2xl font-body text-left text-brand-accent font-bold [font-variant:small-caps]">
               {title}
             </h2>
           )}
           {subTitle && (
-            <h3 className="text-4xl font-heading text-left font-bold text-brand-secondary">
+            <h3 className="text-3xl sm:text-4xl font-heading text-left font-bold text-brand-secondary">
               {subTitle}
             </h3>
           )}
