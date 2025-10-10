@@ -36,7 +36,7 @@ function RootComponent() {
   return (
     <RootDocument>
       {!hideNavbar && <Navbar navItems={navItems} />}
-      <main className="pt-16">
+      <main className="pt-[var(--navbar-height) w-full max-w-full overflow-x-clip">
         <Outlet />
       </main>
       <Footer entity="Hidden Dao Martial Arts" />

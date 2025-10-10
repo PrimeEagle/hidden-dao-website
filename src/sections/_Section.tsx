@@ -24,9 +24,9 @@ export default function Section({
     <section
       id={id}
       className={clsx(
-        "relative text-base text-brand-primary leading-relaxed",
-        noPadding ? "" : "py-14",
-        fullWidth ? "" : "mx-auto max-w-3xl",
+        "relative flex flex-col",
+        !noPadding && "py-14 px-4",
+        fullWidth ? "w-full" : "mx-auto lg:max-w-4xl xl:max-w-7xl",
         className
       )}
     >

@@ -22,7 +22,7 @@ export default function NavLinks({
   return (
     <ul className={className}>
       {navItems.map((item) => (
-        <li key={item.id} className="relative text-xl">
+        <li key={item.id} className="relative text-lg xl:text-xl">
           <a
             href={`#${item.id}`}
             onClick={(e) => {
