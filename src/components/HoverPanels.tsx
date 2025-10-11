@@ -59,7 +59,7 @@ export default function HoverPanels({
   return (
     <div
       className={clsx(
-        "flex flex-col sm:flex-row gap-4 h-[80vh]",
+        "flex flex-col lg:flex-row gap-4 h-[80vh]",
         className
       )}
       onMouseLeave={() => {
