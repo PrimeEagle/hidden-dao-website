@@ -1,4 +1,4 @@
-import NavLinks, { NavItem } from "@/components/NavLinks";
+import NavLinks, { NavItem } from "@/components/Navbar/NavLinks";
 import { useState, useEffect, useRef } from "react";
 import useActiveSection from "@/hooks/useActiveSection";
 import clsx from "clsx";

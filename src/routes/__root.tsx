@@ -9,9 +9,9 @@ import {
   useLocation,
 } from "@tanstack/react-router";
 import appCss from "../styles/app.css?url";
-import Navbar from "../components/Navbar";
-import HeaderCustomContent from "../components/HeaderCustomContent";
-import Footer from "../components/Footer";
+import Navbar from "../components/Navbar/Navbar";
+import HeaderCustomContent from "../components/HeaderCustomContent/HeaderCustomContent";
+import Footer from "../components/Footer/Footer";
 
 function NotFound() {
   return (
