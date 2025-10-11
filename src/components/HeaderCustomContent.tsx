@@ -86,17 +86,8 @@ export default function HeaderCustomContent({
         }
 
         const href = `https://fonts.googleapis.com/css2?family=${familyParam}${axesParam}&display=swap`;
-
         return (
           <React.Fragment key={i}>
-            {font.preload && (
-              <link
-                rel="preload"
-                as="style"
-                href={href}
-                crossOrigin="anonymous"
-              />
-            )}
             <link href={href} rel="stylesheet" />
           </React.Fragment>
         );
