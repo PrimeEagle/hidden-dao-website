@@ -59,7 +59,7 @@ export default function HoverPanels({
   return (
     <div
       className={clsx(
-        "flex flex-col sm:flex-row gap-4 max-w-7xl mx-auto",
+        "flex flex-col sm:flex-row gap-4 h-[80vh]",
         className
       )}
       onMouseLeave={() => {
@@ -80,8 +80,8 @@ export default function HoverPanels({
             aria-expanded={expanded}
             aria-controls={`${panel.id}-content`}
             className={clsx(
-              "relative flex-1 min-h-[200px] rounded-xl overflow-hidden shadow-lg cursor-pointer transition-all duration-300 motion-reduce:transition-none",
-              expanded ? "sm:flex-[2]" : "sm:flex-[1]"
+              "relative flex-1 min-h-0 rounded-xl overflow-hidden shadow-lg cursor-pointer transition-all duration-300 motion-reduce:transition-none",
+              expanded ? "flex-[2]" : "flex-[1]"
             )}
             onClick={() => togglePanel(panel.id)}
             onMouseEnter={() => {
