@@ -1,116 +1,214 @@
-# Component Architecture and Naming Guide (2025)
+# React Component Library Architecture (2025)
 
-This document defines how all React + TypeScript components are structured and named in this project.  
-The goal is **consistency, modularity, type safety, and full automation**
+This document defines the **structure, conventions, and customization patterns** for the reusable React + TypeScript component library.  
+The architecture is designed around **modularity, composability, and scalable overrides** following principles inspired by *Bulletproof React* and *modern design system architectures (Radix UI, Chakra, Ark UI)*.
 
 ---
 
 ## 📂 Folder Structure
 
-Each top-level component lives in its own folder:
+The library is organized around **self-contained component folders** with flat layouts by default.  
+Complex components can include internal subfolders (for hooks, subcomponents, or behaviors).
 
 ```
-src/components/[ComponentName]/
+src/
+  components/
+    Button/
+      Button.tsx
+      Button.types.ts
+      Button.styles.ts
+      useButton.ts
+      index.ts
+    Modal/
+      Modal.tsx
+      useModal.ts
+      Modal.types.ts
+      index.ts
+    Select/
+      components/
+        Option.tsx
+        ListBox.tsx
+        Trigger.tsx
+      hooks/
+        useSelect.ts
+        useOption.ts
+      Select.tsx
+      Select.types.ts
+      index.ts
+  hooks/
+    useOutsideClick.ts
+    useFocusRing.ts
+  behaviors/
+    overlay/
+      useOverlayPosition.ts
+      useOverlayTrigger.ts
+  utils/
+    mergeRefs.ts
+    isBrowser.ts
+  theme/
+    tokens.ts
+    ThemeProvider.tsx
+  system/
+    ComponentProvider.tsx
+  index.ts
 ```
 
-Typical layout:
+### Folder Purpose
 
-```
-[ComponentName]/
-├── [ComponentName].tsx           → main component
-├── components/                   → visual subcomponents only
-├── hooks/                        → required internal logic or lifecycle hooks
-├── behaviors/                    → optional or variant logic (animations, autoplay, transitions)
-│   ├── [behaviorGroup]/          → related variants (e.g., animations/, transitions/, autoplay/)
-│   │   ├── fade.ts
-│   │   ├── slide.ts
-│   │   ├── zoom.ts
-│   │   └── shift.ts
-├── utils/                        → stateless non-React helpers
-└── types/                        → TypeScript definitions
-```
-
+| Folder | Description |
+|---------|--------------|
+| `components/` | Self-contained component modules, flat by default. |
+| `hooks/` | Generic, cross-component React hooks. |
+| `behaviors/` | Shared behavioral hooks or logic (e.g. overlay, interaction, motion). |
+| `utils/` | Non-React helpers and utilities. |
+| `theme/` | Design tokens, theme configuration, and theme provider. |
+| `system/` | Global system components like `ComponentProvider` for overrides. |
 
 ---
 
-## 🧩 Naming Conventions
+## 🧩 Component Structure
 
-| Type | Pattern | Example |
-|------|----------|----------|
-| Components | PascalCase | `ContentSlider.tsx` |
-| Hooks | `use[ComponentName][Purpose].ts` | `useContentSliderController.ts` |
-| Behaviors | camelCase | `fade.ts`, `slide.ts`, `zoom.ts`, `shift.ts` |
-| Utilities | camelCase | `calculateOffset.ts` |
-| Types | `[componentName].types.ts` | `hoverPanel.types.ts` |
+Each component folder contains its own logic, styles, and types.  
+Keep it **flat unless complexity requires subfolders**.
 
-Each behavior variant file exports exactly one function or object.  
+### Example: Flat component (Button)
+
+```
+Button/
+├── Button.tsx
+├── Button.types.ts
+├── Button.styles.ts
+├── useButton.ts
+└── index.ts
+```
+
+### Example: Complex component (Select)
+
+```
+Select/
+├── Select.tsx
+├── components/
+│   ├── Option.tsx
+│   ├── ListBox.tsx
+│   └── Trigger.tsx
+├── hooks/
+│   ├── useSelect.ts
+│   └── useOption.ts
+└── index.ts
+```
 
 ---
 
-## ⚙️ Logic Layers
+## 🧠 Import and Dependency Rules
 
-**Main Component** — renders layout and composes props  
-**Hooks** — required logic or lifecycle (e.g. state, refs, effects)  
-**Behaviors** — optional or variant logic grouped by type  
-**Utilities** — stateless helpers shared across layers  
+- Always use **direct imports** (avoid internal `index.ts` barrels).
+- Only the **root `index.ts`** acts as the public API for the library.
+- Components may import from `hooks/`, `behaviors/`, `utils/`, or `theme/`, but **never from other components**.
 
----
-
-## 🧠 Variant Selection (Option B Model)
-
-There are **no runtime strategy objects**.  
-All behaviors are imported as **namespace maps** using `* as` imports:
-
+Example:
 ```ts
-import * as animationStrategies from "@/components/HoverPanel/behaviors/animations";
-import * as expansionStrategies from "@/components/HoverPanel/behaviors/expansion";
-import * as autoplayStrategies  from "@/components/HoverPanel/behaviors/autoplay";
+// ✅ Good
+import { useOutsideClick } from "@/hooks/useOutsideClick"
+
+// 🚫 Avoid
+import { Modal } from "@/components/Modal"
 ```
-
-Define variant types directly from those namespaces:
-
-```ts
-type AnimationType = keyof typeof animationStrategies;
-type ExpansionType = keyof typeof expansionStrategies;
-```
-
-Usage examples:
-
-### Static
-```tsx
-<HoverPanel animationType="fade" />
-```
-
-### Dynamic
-```tsx
-const [animation, setAnimation] = useState("slide");
-<HoverPanel animationType={animation} />;
-```
-
-### Custom (Injected)
-```tsx
-<HoverPanel
-  animationType="fade"
-  customAnimation={(el, expanded) => {
-    el.style.transition = "all 400ms ease";
-    el.style.transform = expanded ? "rotate(0)" : "rotate(-3deg)";
-  }}
-/>
-```
-
-This maintains full type safety with no runtime maps.
 
 ---
 
-## ⚖️ Path Aliases
+## 🎨 Styling
 
-Always use alias-based imports:
+- **TailwindCSS only** — no CSS files or preprocessors.
+- Use variant-based APIs (e.g. `variant="primary"`) for consistency.
+- Class names should always merge gracefully (`clsx` or `twMerge`).
+- Support for app-level overrides via the `ComponentProvider`.
 
-```ts
-import { PanelItem } from "@/components/HoverPanel/components";
+---
+
+## 🧱 ComponentProvider Pattern
+
+The library exports a `ComponentProvider` that allows **global overrides** of internal components (like `Button`, `Link`, `Input`) for full app-level consistency.
+
+### In the Library
+
+```tsx
+// system/ComponentProvider.tsx
+import React, { createContext, useContext } from "react"
+import { Button } from "@/components/Button/Button"
+
+type ComponentOverrides = {
+  Button?: React.ComponentType<any>
+}
+
+const ComponentContext = createContext<ComponentOverrides>({})
+
+export const ComponentProvider = ({
+  components,
+  children,
+}: {
+  components?: ComponentOverrides
+  children: React.ReactNode
+}) => (
+  <ComponentContext.Provider value={components || {}}>
+    {children}
+  </ComponentContext.Provider>
+)
+
+export const useComponents = () => useContext(ComponentContext)
 ```
 
-`tsconfig.json`:
+### In a Library Component
+
+```tsx
+import { useComponents } from "@/system/ComponentProvider"
+import { Button as DefaultButton } from "@/components/Button/Button"
+
+export const Modal = ({ onConfirm }: { onConfirm: () => void }) => {
+  const { Button: OverrideButton } = useComponents()
+  const Button = OverrideButton || DefaultButton
+  return <Button onClick={onConfirm}>Confirm</Button>
+}
+```
+
+### In the Application
+
+```tsx
+import { ComponentProvider } from "my-ui-lib"
+import { MyBrandButton } from "./MyBrandButton"
+
+<ComponentProvider components={{ Button: MyBrandButton }}>
+  <App />
+</ComponentProvider>
+```
+
+All library buttons — even those rendered inside complex components — automatically use the app’s override.
+
+---
+
+## ⚙️ Theming and Tokens
+
+Themes define base design tokens (colors, spacing, fonts).  
+Components consume tokens via Tailwind config or runtime theme context.
+
+Example:
+```ts
+export const tokens = {
+  colors: {
+    primary: "var(--color-primary)",
+    danger: "var(--color-danger)",
+  },
+  radius: {
+    sm: "0.25rem",
+    md: "0.5rem",
+  },
+}
+```
+
+---
+
+## 🔄 Import Aliases
+
+Use path aliases for consistency:
 
 ```json
 "paths": {
@@ -118,79 +216,20 @@ import { PanelItem } from "@/components/HoverPanel/components";
 }
 ```
 
----
+Usage example:
 
-## 🎨 Styling & Presentation
-
-- TailwindCSS only — no external `.css` or `.scss`
-- Mobile-first, responsive layouts
-- Accessible by default (`aria-*`, keyboard, focus-visible)
-- Flexible composition via children or render props
-
----
-
-## 🌐 SSR & Accessibility
-
-- No `window` or `document` access outside effects  
-- Include ARIA roles and keyboard navigation  
-- Respect `prefers-reduced-motion` for transitions  
-
----
-
-## 🧱 Core Principles
-
-1. Single responsibility per file  
-2. **Named exports only** — never default  
-3. Tailwind-only styling  
-4. SSR-safe and A11y-compliant  
-5. Behavioral modularity via per-file variants  
-6. Variants imported as namespaces (`import * as`)  
-7. Type-driven selection (`keyof typeof namespace`)
-
----
-
-## ✅ Example Layout
-
-```
-src/components/
-└── HoverPanel/
-    ├── HoverPanel.tsx
-    ├── components/
-    │   └── PanelItem.tsx
-    ├── hooks/
-    │   ├── useHoverPanelController.ts
-    │   └── usePanelAnimation.ts
-    ├── behaviors/
-    │   ├── animations/
-    │   │   ├── fade.ts
-    │   │   ├── slide.ts
-    │   │   ├── zoom.ts
-    │   │   ├── shift.ts
-    │   │   └── index.ts
-    │   ├── expansion/
-    │   │   ├── overlay.ts
-    │   │   ├── push.ts
-    │   │   ├── singleHover.ts
-    │   │   └── index.ts
-    │   └── autoplay/
-    │       ├── linear.ts
-    │       ├── pulse.ts
-    │       ├── reverse.ts
-    │       └── index.ts
-    ├── types/
-    │   └── hoverPanel.types.ts
-    ├── utils/
-    │   └── calculateOffset.ts
-    └── index.ts
+```ts
+import { Modal } from "@/components/Modal"
 ```
 
 ---
 
-## 🧾 Summary
+## ✅ Design Principles
 
-This structure ensures every component is:
-
-- Modular and extensible  
-- Consistent in naming and imports  
-- SSR-compatible and accessible  
-- Type-safe and optionally extensible through `import * as` namespace behavior maps
+1. **Flat-first, modular structure**
+2. **Direct imports only** (avoid barrels except root)
+3. **TailwindCSS for styling**
+4. **SSR-safe and accessible**
+5. **Global overrides via ComponentProvider**
+6. **Theming via design tokens**
+7. **Type-safe and composable APIs**
