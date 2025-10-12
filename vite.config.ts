@@ -1,4 +1,5 @@
 import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 import tsConfigPaths from "vite-tsconfig-paths";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import tailwindcss from "@tailwindcss/vite";
@@ -8,10 +9,11 @@ export default defineConfig({
   plugins: [
     tsConfigPaths(),
     tanstackStart({
-      ssr: true,
-      prerender: true,
-      customViteReactPlugin: true,
+      prerender: {
+        filter: () => false,
+      },
     }),
+    react(),
     (tailwindcss as any)({
       filter: (id: string) => !id.includes("node_modules"),
     }),
