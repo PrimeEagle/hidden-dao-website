@@ -1,11 +1,11 @@
 {
   "directory": "./src/components",
   "delete": true,
+  "barrelType": "named",
   "barrelName": "index.ts",
   "structure": "flat",
   "location": "all",
   "nameFormatter": "none",
-  "include": ["\\.ts$", "\\.tsx$"],
   "exclude": ["__tests__", "test.", "spec.", "stories."],
-  "extension": "ts"
+  "extension": "js"
 }
