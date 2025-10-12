@@ -7,7 +7,7 @@ type FadeIFrameProps = {
   className?: string;
 };
 
-export default function FadeIFrame({ src, title, className = "" }: FadeIFrameProps) {
+export function FadeIFrame({ src, title, className = "" }: FadeIFrameProps) {
   return (
     <motion.div
       initial={{ opacity: 0 }}

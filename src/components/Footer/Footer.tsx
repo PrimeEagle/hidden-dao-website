@@ -1,4 +1,4 @@
-import Copyright from "@/components/Copyright/Copyright";
+import { Copyright } from "@/components";
 import clsx from "clsx";
 
 type FooterProps = {
@@ -6,7 +6,7 @@ type FooterProps = {
   className?: string;
 };
 
-export default function Footer({ entity, className = "" }: FooterProps) {
+export function Footer({ entity, className = "" }: FooterProps) {
   return (
     <footer
       id="site-footer"

@@ -1,4 +1,4 @@
-import FadeImage from "./FadeImage";
+import { FadeImage } from "@/components";
 import clsx from "clsx";
 
 type PositionValue =
@@ -27,7 +27,7 @@ type MultiBackgroundImagesProps = {
   className?: string;
 };
 
-export default function MultiBackgroundImages({
+export function MultiBackgroundImages({
   images,
   className = "",
 }: MultiBackgroundImagesProps) {

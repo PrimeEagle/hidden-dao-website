@@ -27,7 +27,7 @@ type HeaderCustomContentProps = {
   meta?: MetaTag[];
 };
 
-export default function HeaderCustomContent({
+export function HeaderCustomContent({
   googleFonts = [],
   favicon,
   meta = [],

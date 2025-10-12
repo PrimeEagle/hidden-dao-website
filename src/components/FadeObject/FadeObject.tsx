@@ -22,7 +22,7 @@ type FadeObjectProps = {
   right?: PositionValue;
 };
 
-export default function FadeObject({
+export function FadeObject({
   children,
   className = "",
   top,

@@ -9,7 +9,7 @@ type BusinessHoursProps = {
   className?: string;
 };
 
-export default function BusinessHours({
+export function BusinessHours({
   title = "",
   hours,
   hideClosed,

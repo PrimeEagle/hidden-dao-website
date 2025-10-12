@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { MdCheckCircle, MdError } from "react-icons/md";
 
-export default function EmailUs() {
+export function EmailUs() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");

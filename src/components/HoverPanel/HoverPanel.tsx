@@ -4,14 +4,14 @@ import { PanelItem } from "./components/PanelItem";
 import { usePanelAnimation } from "./hooks/usePanelAnimation";
 import { expansionStrategies } from "./behaviors/panelBehaviors";
 import { animationStrategies } from "./behaviors/animationStrategies";
-import type { HoverPanelsProps } from "./types";
+import type { HoverPanelProps } from "./types/hoverPanel.types";
 
-export default function HoverPanels({
+export function HoverPanel({
   panels,
   className = "",
   behavior = "overlay",
   animationType = "fade",
-}: HoverPanelsProps) {
+}: HoverPanelProps) {
   const [activeId, setActiveId] = useState<string | null>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 

@@ -41,7 +41,7 @@ const colTemplateClasses: Record<ColTemplate, string> = {
   wideRight: "[grid-template-columns:1fr_2fr]",
 }
 
-export default function LayoutManager({
+export function LayoutManager({
   layout,
   rowTemplate = "equal",
   colTemplate = "equal",

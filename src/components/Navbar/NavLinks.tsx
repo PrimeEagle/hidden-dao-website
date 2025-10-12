@@ -6,7 +6,7 @@ export type NavItem = {
   label: string;
 };
 
-export default function NavLinks({
+export function NavLinks({
   navItems,
   active,
   handleClick,

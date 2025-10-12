@@ -13,7 +13,7 @@ export * from "./FadeVideo/index";
 export * from "./Footer/index";
 export * from "./GoogleMap/index";
 export * from "./HeaderCustomContent/index";
-export * from "./HoverPanels/index";
+export * from "./HoverPanel/index";
 export * from "./LayoutManager/index";
 export * from "./MultiBackgroundImages/index";
 export * from "./Navbar/index";

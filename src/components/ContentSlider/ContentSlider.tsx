@@ -5,7 +5,7 @@ import { useContentSlider } from "./hooks/useContentSlider"
 import clsx from "clsx"
 import { ContentSliderProps } from "./types/contentSlider.types"
 
-export default function ContentSlider<T>({
+export function ContentSlider<T>({
   className = "",
   data,
   renderItem,

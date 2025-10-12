@@ -1,4 +1,4 @@
-import NavLinks, { NavItem } from "@/components/Navbar/NavLinks";
+import { NavLinks,  NavItem } from "@/components";
 import { useState, useEffect, useRef } from "react";
 import useActiveSection from "@/hooks/useActiveSection";
 import clsx from "clsx";
@@ -8,7 +8,7 @@ type NavbarProps = {
   navItems: NavItem[];
 };
 
-export default function Navbar({ className = "", navItems }: NavbarProps) {
+export function Navbar({ className = "", navItems }: NavbarProps) {
   const { active, clickSet } = useActiveSection(navItems.map((n) => n.id));
   const [menuOpen, setMenuOpen] = useState(false);
   const navRef = useRef<HTMLElement | null>(null);

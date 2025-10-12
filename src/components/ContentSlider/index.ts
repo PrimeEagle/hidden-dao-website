@@ -3,4 +3,7 @@
  */
 
 export * from "./ContentSlider";
+export * from "./behaviors/index";
 export * from "./components/index";
+export * from "./hooks/index";
+export * from "./types/index";

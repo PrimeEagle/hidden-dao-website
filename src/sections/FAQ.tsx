@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Section from "@/sections/_Section";
+import { Section } from "@/sections/_Section";
 
 type FAQItem = {
   question: string;

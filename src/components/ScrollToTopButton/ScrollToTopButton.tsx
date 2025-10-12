@@ -35,7 +35,7 @@ type ScrollToTopButtonProps = {
   desktopBreakpoint?: number;
 };
 
-export default function ScrollToTopButton({
+export function ScrollToTopButton({
   threshold = 200,
   fadeDelay = 2000,
   stickAtBottom = true,

@@ -1,4 +1,4 @@
-import FadeIFrame from "@/components/FadeIFrame/FadeIFrame";
+import { FadeIFrame } from "@/components";
 import clsx from "clsx";
 
 type MapProps = {
@@ -7,7 +7,7 @@ type MapProps = {
   className?: string;
 };
 
-export default function GoogleMap({ src, locationName, className = "" }: MapProps) {
+export function GoogleMap({ src, locationName, className = "" }: MapProps) {
   return (
     <section
       className={clsx(

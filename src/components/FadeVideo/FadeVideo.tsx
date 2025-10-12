@@ -9,7 +9,7 @@ type FadeVideoProps = {
   className?: string;
 };
 
-export default function FadeVideo({
+export function FadeVideo({
   src,
   title = "",
   background = false,

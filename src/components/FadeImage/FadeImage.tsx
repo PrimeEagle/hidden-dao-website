@@ -22,7 +22,7 @@ type FadeImageProps = {
   right?: PositionValue;
 };
 
-export default function FadeImage({
+export function FadeImage({
   src,
   alt = "",
   className = "",

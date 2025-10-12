@@ -3,3 +3,5 @@
  */
 
 export * from "./ContentCard";
+export * from "./NavButton";
+export * from "./PaginationDots";

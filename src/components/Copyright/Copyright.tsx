@@ -8,7 +8,7 @@ type CopyrightProps = {
   terms?: { label: string; href: string }[];
 };
 
-export default function Copyright({
+export function Copyright({
   entity,
   className = "",
   terms = [],
