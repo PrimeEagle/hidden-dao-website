@@ -1,4 +1,4 @@
-import { FadeImage } from "@/components";
+import { FadeImage } from "@/components/FadeImage/FadeImage";
 import clsx from "clsx";
 
 type PositionValue =

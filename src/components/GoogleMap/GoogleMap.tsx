@@ -1,4 +1,4 @@
-import { FadeIFrame } from "@/components";
+import { FadeIFrame } from "@/components/FadeIFrame/FadeIFrame";
 import clsx from "clsx";
 
 type MapProps = {

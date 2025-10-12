@@ -7,7 +7,7 @@ export type Panel = {
   children: React.ReactNode;
 };
 
-export type HoverPanelsProps = {
+export type HoverPanelProps = {
   panels: Panel[];
   className?: string;
   behavior?: "overlay" | "push" | "singleHover";
