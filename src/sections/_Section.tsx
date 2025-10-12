@@ -11,7 +11,7 @@ type SectionProps = {
   noPadding?: boolean;
 };
 
-export default function Section({
+export function Section({
   id,
   title = "",
   subTitle = "",

@@ -1,5 +1,4 @@
 /// <reference types="vite/client" />
-import React from "react";
 import type { ReactNode } from "react";
 import {
   Outlet,
@@ -9,9 +8,9 @@ import {
   useLocation,
 } from "@tanstack/react-router";
 import appCss from "../styles/app.css?url";
-import Navbar from "../components/Navbar";
-import HeaderCustomContent from "../components/HeaderCustomContent";
-import Footer from "../components/Footer";
+import { Navbar } from "@/components";
+import { HeaderCustomContent } from "@/components";
+import { Footer } from "@/components";
 
 function NotFound() {
   return (
@@ -73,9 +72,7 @@ function RootDocument({ children }: { children: ReactNode }) {
               axes: [{ name: "ital" }],
               preload: true,
             },
-            { family: "Yuji Mai", 
-              weights: [400],
-              preload: true },
+            { family: "Yuji Mai", weights: [400], preload: true },
           ]}
           favicon={[
             { type: "image/svg+xml", href: "/favicon.svg" },

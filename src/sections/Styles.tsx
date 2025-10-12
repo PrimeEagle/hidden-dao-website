@@ -1,5 +1,5 @@
-import HoverPanels from "@/components/HoverPanels";
-import Section from "@/sections/_Section";
+import { HoverPanel } from "@/components";
+import { Section } from "@/sections/_Section";
 
 export default function Styles() {
   const panels = [
@@ -66,7 +66,7 @@ export default function Styles() {
 
   return (
     <Section id="styles" title="Styles" subTitle="Styles We Teach">
-      <HoverPanels panels={panels} className="h-[600px]" />
+      <HoverPanel panels={panels} className="h-[600px]" />
     </Section>
   );
 }

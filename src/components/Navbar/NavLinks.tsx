@@ -1,0 +1,51 @@
+import { motion } from "framer-motion";
+import ShortStroke from "@/assets/shortstroke.svg?react";
+
+export type NavItem = {
+  id: string;
+  label: string;
+};
+
+export function NavLinks({
+  navItems,
+  active,
+  handleClick,
+  layoutId,
+  className = "",
+}: {
+  navItems: NavItem[];
+  active: string;
+  handleClick: (id: string) => void;
+  layoutId: string;
+  className?: string;
+}) {
+  return (
+    <ul className={className}>
+      {navItems.map((item) => (
+        <li key={item.id} className="relative text-lg xl:text-xl">
+          <a
+            href={`#${item.id}`}
+            onClick={(e) => {
+              e.preventDefault();
+              handleClick(item.id);
+            }}
+            className={
+              active === item.id ? "text-brand-light" : "text-brand-light/70 hover:text-brand-accent"
+            }
+          >
+            {item.label}
+          </a>
+          {active === item.id && (
+            <motion.div
+              layoutId={layoutId}
+              className="absolute left-0 right-0 -bottom-1 h-[5px]"
+              transition={{ type: "spring", stiffness: 500, damping: 30 }}
+            >
+              <ShortStroke fill="currentColor" className="h-full w-full text-brand-accent" preserveAspectRatio="none" />
+            </motion.div>
+          )}
+        </li>
+      ))}
+    </ul>
+  );
+}
