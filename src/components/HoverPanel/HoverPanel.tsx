@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { PanelItem } from "./PanelItem";
 import { usePanelAnimation } from "./usePanelAnimation";
 import { expansionStrategies } from "./panelBehaviors";
-import type { HoverPanelProps } from "./HoverPanel.types";
+import type { HoverPanelProps } from "./hoverPanel.types";
 
 export function HoverPanel({
   panels,

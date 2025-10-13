@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import type { Panel } from "./HoverPanel.types";
+import type { Panel } from "./hoverPanel.types";
 
 type PanelItemProps = {
   panel: Panel;
