@@ -1,39 +1,19 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { LuChevronUp } from "react-icons/lu";
+import { scrollToTopButtonStyles } from "./scrollToTopButton.styles";
+import type { ScrollToTopButtonProps, ResponsiveValue } from "./scrollToTopButton.types";
 
-type ResponsiveValue<T> = T | { desktop: T; mobile: T };
-
-function isResponsiveObject<T>(
-  value: ResponsiveValue<T>
-): value is { desktop: T; mobile: T } {
-  return (
-    typeof value === "object" &&
-    value !== null &&
-    "desktop" in value &&
-    "mobile" in value
-  );
+function isResponsiveObject<T>(value: ResponsiveValue<T>): value is { desktop: T; mobile: T } {
+  return typeof value === "object" && value !== null && "desktop" in value && "mobile" in value;
 }
 
-function getResponsiveValue<T>(
-  value: ResponsiveValue<T>,
-  isDesktop: boolean
-): T {
+function getResponsiveValue<T>(value: ResponsiveValue<T>, isDesktop: boolean): T {
   if (isResponsiveObject(value)) {
     return isDesktop ? value.desktop : value.mobile;
   }
   return value;
 }
-
-type ScrollToTopButtonProps = {
-  threshold?: number;
-  fadeDelay?: number;
-  stickAtBottom?: boolean;
-  bottomOffset?: ResponsiveValue<number>;
-  rightOffset?: ResponsiveValue<number>;
-  size?: ResponsiveValue<number>;
-  desktopBreakpoint?: number;
-};
 
 export function ScrollToTopButton({
   threshold = 200,
@@ -137,7 +117,7 @@ export function ScrollToTopButton({
           transition={{ duration: 0.4, ease: "easeInOut" }}
           onMouseEnter={isDesktop ? handleHoverIn : undefined}
           onMouseLeave={isDesktop ? handleHoverOut : undefined}
-          className="z-50 fixed flex items-center justify-center rounded-full bg-brand-light text-brand-secondary border-2 border-brand-secondary shadow-lg focus:outline-none focus:ring-2 focus:ring-brand-starkAccent"
+          className={scrollToTopButtonStyles.button}
           style={{
             bottom: `${getResponsiveValue(bottomOffset, isDesktop)}px`,
             right: `${getResponsiveValue(rightOffset, isDesktop)}px`,
