@@ -1,31 +1,5 @@
 import React from "react";
-
-type MetaTag = {
-  name?: string;
-  property?: string;
-  content: string;
-  httpEquiv?: string;
-};
-
-type Favicon = { type: string; href: string };
-
-type GoogleFontAxis = {
-  name: string;
-  values?: (string | number)[]; // optional: if missing, pairs with weights
-};
-
-type GoogleFont = {
-  family: string;
-  weights?: number[];
-  axes?: GoogleFontAxis[];
-  preload?: boolean;
-};
-
-type HeaderCustomContentProps = {
-  googleFonts?: GoogleFont[];
-  favicon?: Favicon | Favicon[];
-  meta?: MetaTag[];
-};
+import type { HeaderCustomContentProps } from "./headerCustomContent.types";
 
 export function HeaderCustomContent({
   googleFonts = [],
