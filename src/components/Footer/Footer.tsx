@@ -1,21 +1,11 @@
-import { Copyright } from "@/components/Copyright";
-import clsx from "clsx";
-
-type FooterProps = {
-  entity: string;
-  className?: string;
-};
+import { Copyright } from "@/components/Copyright/Copyright";
+import { footerStyles } from "./footer.styles";
+import type { FooterProps } from "./footer.types";
 
 export function Footer({ entity, className = "" }: FooterProps) {
   return (
-    <footer
-      id="site-footer"
-      className={clsx(
-        "relative z-10 min-h-40 flex flex-col items-center justify-center",
-        className
-      )}
-    >
-      <div className="mb-3">
+    <footer id="site-footer" className={footerStyles.container(className)}>
+      <div className={footerStyles.dividerWrapper}>
         <img src="/divider-long.png" width="1000" />
       </div>
       <div>

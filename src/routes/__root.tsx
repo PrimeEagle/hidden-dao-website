@@ -10,7 +10,7 @@ import {
 import appCss from "../styles/app.css?url";
 import { Navbar } from "@/components/Navbar/Navbar";
 import { HeaderCustomContent } from "@/components/HeaderCustomContent/HeaderCustomContent";
-import { Footer } from "@/components/Footer/Footer";
+import { Footer } from "@/components/Footer";
 
 function NotFound() {
   return (
