@@ -1,6 +1,6 @@
 import { businessHoursStyles } from "./BusinessHours.styles";
 import { useBusinessHours } from "./useBusinessHours";
-import type { BusinessHoursProps } from "./BusinessHours.types";
+import type { BusinessHoursProps } from "./businessHours.types";
 
 export function BusinessHours({
   title = "",

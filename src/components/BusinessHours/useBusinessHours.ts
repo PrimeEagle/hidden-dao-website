@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import type { BusinessHourEntry } from "./BusinessHours.types";
+import type { BusinessHourEntry } from "./businessHours.types";
 
 export function useBusinessHours(
   hours: BusinessHourEntry[], 

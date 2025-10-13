@@ -15,14 +15,14 @@ src/
   components/
     Button/
       Button.tsx
-      Button.types.ts
-      Button.styles.ts
+      button.types.ts
+      button.styles.ts
       useButton.ts
       index.ts
     Modal/
       Modal.tsx
       useModal.ts
-      Modal.types.ts
+      modal.types.ts
       index.ts
     Select/
       components/
@@ -33,7 +33,7 @@ src/
         useSelect.ts
         useOption.ts
       Select.tsx
-      Select.types.ts
+      select.types.ts
       index.ts
   hooks/
     useOutsideClick.ts
@@ -76,8 +76,8 @@ Keep it **flat unless complexity requires subfolders**.
 ```
 Button/
 ├── Button.tsx
-├── Button.types.ts
-├── Button.styles.ts
+├── button.types.ts
+├── button.styles.ts
 ├── useButton.ts
 └── index.ts
 ```
