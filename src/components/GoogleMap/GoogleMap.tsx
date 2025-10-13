@@ -1,14 +1,24 @@
-import { FadeIFrame } from "@/components/FadeIFrame/FadeIFrame";
+import { FadeItem } from "@/components/FadeItem/FadeItem";
 import { googleMapStyles } from "./googleMap.styles";
 import type { GoogleMapProps } from "./googleMap.types";
 
-export function GoogleMap({ src, locationName, className = "" }: GoogleMapProps) {
+export function GoogleMap({
+  src,
+  locationName,
+  className = "",
+}: GoogleMapProps) {
   return (
     <section
       className={googleMapStyles.container(className)}
       aria-label={`Map showing ${locationName} location.`}
     >
-      <FadeIFrame src={src} title="Google Map" className={googleMapStyles.iframe} />
+      <FadeItem>
+        <iframe
+          src={src}
+          title="Google Map"
+          className={googleMapStyles.iframe}
+        />
+      </FadeItem>
     </section>
   );
 }

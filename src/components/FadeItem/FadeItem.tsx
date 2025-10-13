@@ -27,7 +27,7 @@ export function FadeItem({
 
   return (
     <motion.div
-      className={clsx("w-full", className)}
+      className={clsx("w-full h-full", className)}
       style={style}
       initial={{ opacity: 0, y: yOffset }}
       whileInView={{ opacity: 1, y: 0 }}
