@@ -99,6 +99,15 @@ Select/
 
 ---
 
+## Naming Conventions
+
+- Pascal Case for .tsx files
+- Camel Case for all other files
+- type files are always [name of main component in camel case].types.ts
+
+
+---
+
 ## 🧠 Import and Dependency Rules
 
 - Always use **direct imports** (avoid internal `index.ts` barrels).
