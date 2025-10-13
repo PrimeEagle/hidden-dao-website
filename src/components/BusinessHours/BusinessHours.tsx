@@ -1,4 +1,4 @@
-import { businessHoursStyles } from "./BusinessHours.styles";
+import { businessHoursStyles } from "./businessHours.styles";
 import { useBusinessHours } from "./useBusinessHours";
 import type { BusinessHoursProps } from "./businessHours.types";
 
