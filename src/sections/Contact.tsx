@@ -1,5 +1,5 @@
 import { Section } from "@/sections/_Section";
-import { GoogleMap } from "@/components/GoogleMap/GoogleMap";
+import { GoogleMap } from "@/components/GoogleMap";
 import { LuInstagram } from "react-icons/lu";
 import { ImYoutube } from "react-icons/im";
 import { MdFacebook } from "react-icons/md";
