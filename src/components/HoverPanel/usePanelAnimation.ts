@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { animationStrategies } from "../behaviors/animationStrategies";
+import { animationStrategies } from "./animationStrategies";
 
 export function usePanelAnimation(
   type: keyof typeof animationStrategies = "fade"

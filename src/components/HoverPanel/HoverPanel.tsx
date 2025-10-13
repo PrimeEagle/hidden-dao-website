@@ -1,9 +1,9 @@
 import { useState } from "react";
 import clsx from "clsx";
-import { PanelItem } from "./components/PanelItem";
-import { usePanelAnimation } from "./hooks/usePanelAnimation";
-import { expansionStrategies } from "./behaviors/panelBehaviors";
-import type { HoverPanelProps } from "./types/hoverPanel.types";
+import { PanelItem } from "./PanelItem";
+import { usePanelAnimation } from "./usePanelAnimation";
+import { expansionStrategies } from "./panelBehaviors";
+import type { HoverPanelProps } from "./HoverPanel.types";
 
 export function HoverPanel({
   panels,

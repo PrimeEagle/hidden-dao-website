@@ -1,4 +1,4 @@
-import { HoverPanel } from "@/components/HoverPanel/HoverPanel";
+import { HoverPanel } from "@/components/HoverPanel";
 import { Section } from "@/sections/_Section";
 
 export default function Styles() {
