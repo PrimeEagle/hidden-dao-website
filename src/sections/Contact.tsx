@@ -4,7 +4,7 @@ import { LuInstagram } from "react-icons/lu";
 import { ImYoutube } from "react-icons/im";
 import { MdFacebook } from "react-icons/md";
 import { BusinessHours } from "@/components/BusinessHours";
-import { EmailUs } from "@/components/EmailUs/EmailUs";
+import { EmailUs } from "@/components/EmailUs";
 import { LayoutManager } from "@/components/LayoutManager/LayoutManager";
 
 export default function Contact() {
