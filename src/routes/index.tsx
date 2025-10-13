@@ -5,7 +5,7 @@ import Styles from "../sections/Styles";
 import FAQ from "../sections/FAQ";
 import Testimonials from "../sections/Testimonials";
 import Contact from "../sections/Contact";
-import { ScrollToTopButton } from "@/components/ScrollToTopButton/ScrollToTopButton";
+import { ScrollToTopButton } from "@/components/ScrollToTopButton";
 
 export const Route = createFileRoute("/")({
   component: HomePage,

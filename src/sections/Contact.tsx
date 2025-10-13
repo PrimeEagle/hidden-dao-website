@@ -5,7 +5,7 @@ import { ImYoutube } from "react-icons/im";
 import { MdFacebook } from "react-icons/md";
 import { BusinessHours } from "@/components/BusinessHours";
 import { EmailUs } from "@/components/EmailUs";
-import { LayoutManager } from "@/components/LayoutManager/LayoutManager";
+import { LayoutManager } from "@/components/LayoutManager";
 
 export default function Contact() {
   const hours = [
