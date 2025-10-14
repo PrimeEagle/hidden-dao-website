@@ -1,4 +1,4 @@
-import { FadeItem } from "@/components/FadeItem/FadeItem";
+import { FadeItem } from "@/components/FadeItem";
 import { googleMapStyles } from "./googleMap.styles";
 import type { GoogleMapProps } from "./googleMap.types";
 
