@@ -1,5 +1,6 @@
 import { businessHoursStyles } from "./businessHours.styles";
 import { useBusinessHours } from "./useBusinessHours";
+
 import type { BusinessHoursProps } from "./businessHours.types";
 
 export function BusinessHours({
@@ -12,7 +13,7 @@ export function BusinessHours({
 
   return (
     <div className={businessHoursStyles.container(className)}>
-      <div className="p-2">
+     
         {title === "" ? (
           <h2 className={businessHoursStyles.title(title)}>Business Hours</h2>
         ) : (
@@ -32,7 +33,7 @@ export function BusinessHours({
             </div>
           ))}
         </dl>
-      </div>
+
     </div>
   );
 }

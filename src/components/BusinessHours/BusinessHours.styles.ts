@@ -2,7 +2,7 @@ import clsx from "clsx";
 
 export const businessHoursStyles = {
   container: (className?: string) => clsx(
-    "max-w-md mx-auto rounded-xl bg-brand-light p-2 shadow",
+    "max-w-md mx-auto rounded-xl bg-brand-light p-2 shadow p-4",
     className
   ),
   
