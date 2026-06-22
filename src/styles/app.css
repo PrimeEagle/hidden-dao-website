@@ -3,13 +3,13 @@
 
 @theme {
   /* Colors */
-  --color-brand-primary: #1A1A1A;
-  --color-brand-secondary: #6E4B8A;
-  --color-brand-accent: #8CAEA0;
-  --color-brand-softAccent: #CFCAC4;
-  --color-brand-starkAccent: #A62626;
-  --color-brand-neutral: #F7F5EF;
-  --color-brand-light: #FEFEFC;
+--color-brand-primary: #111111; /* was #1A1A1A */
+--color-brand-secondary: #8B1C2E; /* was #6E4B8A */
+--color-brand-accent: #B5925A; /* was #8CAEA0 */
+--color-brand-softAccent: #D0C5B4; /* was #CFCAC4 */
+--color-brand-starkAccent: #8B1C2E; /* was #A8331F */
+--color-brand-neutral: #F8F6F3; /* was #F3ECE0 */
+--color-brand-light: #FEFCF8; /* was #FEFEFC */
 
   --color-logo-facebook: #1877F2;
   --color-logo-instagram: #833ab4;
