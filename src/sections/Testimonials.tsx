@@ -1,5 +1,5 @@
 import { Section } from "@/sections/_Section";
-import { ContentSlider } from "@/components/ContentSlider/ContentSlider";
+import { ContentSlider } from "@/components/ContentSlider";
 
 const testimonials = [
   {

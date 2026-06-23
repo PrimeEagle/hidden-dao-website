@@ -1,11 +1,11 @@
 import { Section } from "@/sections/_Section";
-import { GoogleMap } from "@/components/GoogleMap/GoogleMap";
+import { GoogleMap } from "@/components/GoogleMap";
 import { LuInstagram } from "react-icons/lu";
 import { ImYoutube } from "react-icons/im";
 import { MdFacebook } from "react-icons/md";
-import { BusinessHours } from "@/components/BusinessHours/BusinessHours";
-import { EmailUs } from "@/components/EmailUs/EmailUs";
-import { LayoutManager } from "@/components/LayoutManager/LayoutManager";
+import { BusinessHours } from "@/components/BusinessHours";
+import { EmailUs } from "@/components/EmailUs";
+import { LayoutManager } from "@/components/LayoutManager";
 
 export default function Contact() {
   const hours = [
@@ -24,7 +24,7 @@ export default function Contact() {
         layout="rightSpanLeftSplit"
         rowTemplate="topSmall"
         colTemplate="equal"
-        height="h-[700px]"
+        height="h-auto md:h-[700px]"
         gap={4}
         slots={{
           slot1: <BusinessHours hours={hours} title="Class Times" hideClosed />,

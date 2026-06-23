@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import type { Panel } from "../types";
+import type { Panel } from "./hoverPanel.types";
 
 type PanelItemProps = {
   panel: Panel;
@@ -23,7 +23,7 @@ export function PanelItem({
       aria-expanded={expanded}
       aria-controls={`${panel.id}-content`}
       className={clsx(
-        "relative flex-1 min-h-0 rounded-xl overflow-hidden shadow-lg cursor-pointer transition-all duration-300 motion-reduce:transition-none",
+        "group relative flex-1 min-h-0 rounded-xl overflow-hidden shadow-lg cursor-pointer transition-all duration-300 motion-reduce:transition-none",
         expanded ? "flex-[2]" : "flex-[1]"
       )}
       onClick={onToggle}

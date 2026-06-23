@@ -1,22 +1,24 @@
-import { FadeIFrame } from "@/components/FadeIFrame/FadeIFrame";
-import clsx from "clsx";
+import { FadeItem } from "@/components/FadeItem";
+import { googleMapStyles } from "./googleMap.styles";
+import type { GoogleMapProps } from "./googleMap.types";
 
-type MapProps = {
-  src: string;
-  locationName: string;
-  className?: string;
-};
-
-export function GoogleMap({ src, locationName, className = "" }: MapProps) {
+export function GoogleMap({
+  src,
+  locationName,
+  className = "",
+}: GoogleMapProps) {
   return (
     <section
-      className={clsx(
-        "hover:brightness-105 w-full h-full rounded-lg shadow overflow-hidden",
-        className
-      )}
+      className={googleMapStyles.container(className)}
       aria-label={`Map showing ${locationName} location.`}
     >
-      <FadeIFrame src={src} title="Google Map" className="w-full h-full" />
+      <FadeItem>
+        <iframe
+          src={src}
+          title="Google Map"
+          className={googleMapStyles.iframe}
+        />
+      </FadeItem>
     </section>
   );
 }

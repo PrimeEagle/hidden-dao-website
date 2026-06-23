@@ -21,8 +21,7 @@ export default defineConfig({
     noExternal: ["vite-plugin-svgr"],
   },
   server: {
-    host: true,
-    port: 3000,
+	host: true,
     allowedHosts: ["morpheus.local", "matrixprime.tplinkdns.com"],
   },
 });

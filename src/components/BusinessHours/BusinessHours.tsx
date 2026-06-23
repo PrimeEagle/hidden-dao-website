@@ -1,13 +1,7 @@
-import clsx from "clsx";
+import { businessHoursStyles } from "./businessHours.styles";
+import { useBusinessHours } from "./useBusinessHours";
 
-type BusinessHourEntry = { day: string; time: string };
-
-type BusinessHoursProps = {
-  title?: string;
-  hours: BusinessHourEntry[];
-  hideClosed?: boolean;
-  className?: string;
-};
+import type { BusinessHoursProps } from "./businessHours.types";
 
 export function BusinessHours({
   title = "",
@@ -15,43 +9,31 @@ export function BusinessHours({
   hideClosed,
   className = "",
 }: BusinessHoursProps) {
+  const { filteredHours } = useBusinessHours(hours, hideClosed);
+
   return (
-    <div
-      className={clsx(
-        "max-w-md mx-auto rounded-xl bg-brand-light p-2 shadow",
-        className
-      )}
-    >
-      <div className="p-2">
+    <div className={businessHoursStyles.container(className)}>
+     
         {title === "" ? (
-          <h2 className="sr-only">Business Hours</h2>
+          <h2 className={businessHoursStyles.title(title)}>Business Hours</h2>
         ) : (
-          <h2 className="text-2xl font-semibold mb-4 text-center text-brand-primary">
+          <h2 className={businessHoursStyles.title(title)}>
             {title}
           </h2>
         )}
-        <dl className="divide-y divide-brand-softAccent" aria-label="Business hours">
-          {hours.map((entry, i) =>
-            hideClosed && entry.time === "Closed" ? null : (
-              <div key={i} className="flex justify-between py-3 sm:py-4">
-                <dt className="font-medium text-base sm:text-lg text-brand-primary">
-                  {entry.day}
-                </dt>
-                <dd
-                  className={clsx(
-                    "text-base sm:text-lg",
-                    entry.time === "Closed"
-                      ? "text-brand-starkAccent"
-                      : "text-brand-primary"
-                  )}
-                >
-                  {entry.time}
-                </dd>
-              </div>
-            )
-          )}
+        <dl className={businessHoursStyles.hoursList} aria-label="Business hours">
+          {filteredHours.map((entry, i) => (
+            <div key={i} className={businessHoursStyles.entryContainer}>
+              <dt className={businessHoursStyles.dayLabel}>
+                {entry.day}
+              </dt>
+              <dd className={businessHoursStyles.timeValue(entry.time)}>
+                {entry.time}
+              </dd>
+            </div>
+          ))}
         </dl>
-      </div>
+
     </div>
   );
 }

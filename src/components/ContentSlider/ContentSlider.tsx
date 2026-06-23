@@ -1,9 +1,9 @@
-import { ContentCard } from "./components/ContentCard"
-import { NavButton } from "./components/NavButton"
-import { PaginationDots } from "./components/PaginationDots"
-import { useContentSlider } from "./hooks/useContentSlider"
+import { ContentCard } from "./ContentCard"
+import { NavButton } from "./NavButton"
+import { PaginationDots } from "./PaginationDots"
+import { useContentSlider } from "./useContentSlider"
 import clsx from "clsx"
-import { ContentSliderProps } from "./types/contentSlider.types"
+import { ContentSliderProps } from "./contentSlider.types"
 
 export function ContentSlider<T>({
   className = "",

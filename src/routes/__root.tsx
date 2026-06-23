@@ -9,8 +9,8 @@ import {
 } from "@tanstack/react-router";
 import appCss from "../styles/app.css?url";
 import { Navbar } from "@/components/Navbar/Navbar";
-import { HeaderCustomContent } from "@/components/HeaderCustomContent/HeaderCustomContent";
-import { Footer } from "@/components/Footer/Footer";
+import { HeaderCustomContent } from "@/components/HeaderCustomContent";
+import { Footer } from "@/components/Footer";
 
 function NotFound() {
   return (
@@ -81,9 +81,9 @@ function RootDocument({ children }: { children: ReactNode }) {
           meta={[
             {
               name: "description",
-              content: "Martial Arts Academy – Discipline, balance, tradition.",
+              content: "Hidden Dao Martial Arts",
             },
-            { property: "og:title", content: "Martial Arts Academy" },
+            { property: "og:title", content: "Hidden Dao Martial Arts" },
           ]}
         />
       </head>

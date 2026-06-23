@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
 import { Section } from "@/sections/_Section";
+import { useEffect, useRef, useState } from "react";
 
 function useWiggle(seed = 1000, freq = 0.01, amp = 10) {
   const ref = useRef<HTMLImageElement | null>(null);
@@ -96,11 +96,11 @@ export default function Hero() {
             ref={contentBoxRef}
             className="flex flex-col items-center text-center w-fit max-w-full"
           >
-            <div className="font-logo text-6xl md:text-8xl bg-gradient-to-t from-[#372537] to-[#664c66] bg-clip-text text-transparent px-2">
+            <div className="font-logo text-6xl md:text-8xl bg-gradient-to-t from-[#2A1208] to-[#6B2218] bg-clip-text text-transparent px-2">
               Hidden Dao
             </div>
 
-            <div className="font-heading text-xl md:text-3xl tracking-wide bg-gradient-to-t from-[#4e3a33] to-[#5f473d] bg-clip-text text-transparent [font-variant:small-caps]">
+            <div className="font-heading text-xl md:text-3xl tracking-wide bg-gradient-to-t from-[#3A1A0E] to-[#5A3020] bg-clip-text text-transparent [font-variant:small-caps]">
               Train the Body, Refine the Spirit
             </div>
 
