@@ -81,9 +81,9 @@ function RootDocument({ children }: { children: ReactNode }) {
           meta={[
             {
               name: "description",
-              content: "Martial Arts Academy – Discipline, balance, tradition.",
+              content: "Hidden Dao Martial Arts",
             },
-            { property: "og:title", content: "Martial Arts Academy" },
+            { property: "og:title", content: "Hidden Dao Martial Arts" },
           ]}
         />
       </head>

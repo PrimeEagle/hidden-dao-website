@@ -19,10 +19,23 @@ export const rowTemplateClasses: Record<RowTemplate, string> = {
   bottomSmall: "[grid-template-rows:2fr_1fr]",
 };
 
+export const mdRowTemplateClasses: Record<RowTemplate, string> = {
+  equal: "md:[grid-template-rows:1fr_1fr]",
+  split: "md:[grid-template-rows:1fr_2fr]",
+  topSmall: "md:[grid-template-rows:1fr_2fr]",
+  bottomSmall: "md:[grid-template-rows:2fr_1fr]",
+};
+
 export const colTemplateClasses: Record<ColTemplate, string> = {
   equal: "[grid-template-columns:1fr_1fr]",
   wideLeft: "[grid-template-columns:2fr_1fr]",
   wideRight: "[grid-template-columns:1fr_2fr]",
+};
+
+export const mdColTemplateClasses: Record<ColTemplate, string> = {
+  equal: "md:[grid-template-columns:1fr_1fr]",
+  wideLeft: "md:[grid-template-columns:2fr_1fr]",
+  wideRight: "md:[grid-template-columns:1fr_2fr]",
 };
 
 

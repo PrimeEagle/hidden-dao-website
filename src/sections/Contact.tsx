@@ -24,7 +24,7 @@ export default function Contact() {
         layout="rightSpanLeftSplit"
         rowTemplate="topSmall"
         colTemplate="equal"
-        height="h-[700px]"
+        height="h-auto md:h-[700px]"
         gap={4}
         slots={{
           slot1: <BusinessHours hours={hours} title="Class Times" hideClosed />,

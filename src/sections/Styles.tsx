@@ -16,9 +16,9 @@ export default function Styles() {
       children: (
         <div className="relative w-full h-full">
           <img
-            src="/kung-fu-in-mountains.png"
-            alt="Mountains"
-            className="absolute inset-0 w-full h-full object-cover"
+            src="/kung_fu.png"
+            alt="Kung Fu"
+            className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-500 origin-top group-hover:scale-110"
           />
         </div>
       ),
@@ -30,15 +30,15 @@ export default function Styles() {
       description:
         "The style of karate we teach comes from the small fishing village of Tomari, Okinawa.",
       color: {
-        base: "bg-brand-secondary/20",
-        hover: "bg-brand-secondary/0",
+        base: "bg-brand-accent/30",
+        hover: "bg-brand-accent/0",
       },
       children: (
         <div className="relative w-full h-full">
           <img
-            src="/karate-in-tomari-2.png"
-            alt="Rocky Beach"
-            className="absolute inset-0 w-full h-full object-cover"
+            src="/karate.png"
+            alt="Karate"
+            className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-500 origin-top group-hover:scale-110"
           />
         </div>
       ),
@@ -49,15 +49,15 @@ export default function Styles() {
       subtitle: "Wu Style T'ai Chi Chuan",
       description: "Hong Kong branch of the Northern Wu Style Ta'i Chi Chuan.",
       color: {
-        base: "bg-brand-starkAccent/10",
-        hover: "bg-brand-starkAccent/0",
+        base: "bg-brand-accent/30",
+        hover: "bg-brand-accent/0",
       },
       children: (
         <div className="relative w-full h-full">
           <img
-            src="/tai-chi-in-forbidden-city.png"
-            alt="Forbidden City"
-            className="absolute inset-0 w-full h-full object-cover"
+            src="/tai_chi.png"
+            alt="Tai Chi"
+            className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-500 origin-top group-hover:scale-110"
           />
         </div>
       ),

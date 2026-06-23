@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
 import { Section } from "@/sections/_Section";
+import { useEffect, useRef, useState } from "react";
 
 function useWiggle(seed = 1000, freq = 0.01, amp = 10) {
   const ref = useRef<HTMLImageElement | null>(null);
